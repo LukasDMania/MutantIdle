@@ -36,7 +36,9 @@ public class GeneratorUIElement : MonoBehaviour
         _bodyPartSprite.sprite = _linkedGenerator.BodyPartDataSO.GetSpriteForLevel(_linkedGenerator.GeneratorLevel);
         _generatorLevel.text = $"{_linkedGenerator.GeneratorLevel}";
         _slider.value = _linkedGenerator.CalculatePercentageToNextMultiplier();
-        _productionRate.text = $"{_linkedGenerator.TotalProduction:F2}/s";
+        _productionRate.text = $"{_linkedGenerator.TotalProduction:F2}/t";
+        //_linkedGenerator.CalculateTotalProduction();
+        _generatorMultiplier.text = $"Multiplier: {_linkedGenerator.TotalMultiplier:F2}x";
         _upgradeButtonText.text = $"{_linkedGenerator.CurrentUpgradeCost:F2}";
     }
 

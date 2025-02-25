@@ -16,9 +16,11 @@ MonoBehaviour:
   SpriteUpgrades:
   - levelRequired: 0
     sprite: {fileID: -6447938170285944525, guid: e27d9691ac919de4ea89f827cc623215, type: 3}
-  - levelRequired: 5
+  - levelRequired: 25
     sprite: {fileID: -2197387472645271994, guid: c0bf15defaa796340bcb53ecba22c465, type: 3}
-  - levelRequired: 15
+  - levelRequired: 50
+    sprite: {fileID: -5718256521370866827, guid: d6d0146e0e51b324483b53075c6b0adb, type: 3}
+  - levelRequired: 100
     sprite: {fileID: -5718256521370866827, guid: d6d0146e0e51b324483b53075c6b0adb, type: 3}
   AttachmentPoint: {x: 0, y: 0}
   SortingOrder: 1

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PlayerStartingCurrency
   m_EditorClassIdentifier: 
   DeveloperDescription: 
-  Value: 100
+  Value: 10000

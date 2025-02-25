@@ -44,7 +44,7 @@ public class BodyPartDataSO : ScriptableObject
                 return upgrade.levelRequired;
             }
         }
-        return SpriteUpgrades[0].levelRequired;
+        return -1;
     }
 
     public int GetPreviousUpgradeLevel(int level)

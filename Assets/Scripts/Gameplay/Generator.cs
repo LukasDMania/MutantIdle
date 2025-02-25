@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Generator : MonoBehaviour, ITickable
@@ -32,10 +33,10 @@ public class Generator : MonoBehaviour, ITickable
         CharacterVisualManager = FindFirstObjectByType<CharacterVisualManager>();
     }
 
-    private void CalculateTotalProduction()
+    public void CalculateTotalProduction()
     {
-        TotalMultiplier = MultiplierSystem.CalculateTotalMultiplier();
-        TotalProduction = (GeneratorSO.BaseProduction * GeneratorLevel) * TotalMultiplier * GlobalMultiplier.Value;
+        TotalMultiplier = MultiplierSystem.CalculateTotalMultiplier() * GlobalMultiplier.Value;
+        TotalProduction = (GeneratorSO.BaseProduction * GeneratorLevel) * TotalMultiplier;
     }
 
     private void CalculateUpgradeCost() 
@@ -62,9 +63,6 @@ public class Generator : MonoBehaviour, ITickable
         _playerCurrency.ApplyChange(-CurrentUpgradeCost);
         GeneratorLevel++;
 
-        CalculateTotalProduction();
-        CalculateUpgradeCost();
-
         // Handle visuals
         if (GeneratorLevel == 1)
         {
@@ -90,6 +88,9 @@ public class Generator : MonoBehaviour, ITickable
         {
             MultiplierSystem.AddMultiplier(LevelUpMultipliers[2]);
         }
+
+        CalculateTotalProduction();
+        CalculateUpgradeCost();
     }
 
 
@@ -102,7 +103,10 @@ public class Generator : MonoBehaviour, ITickable
     {
         int previousUpgradeLevel = BodyPartDataSO.GetPreviousUpgradeLevel(GeneratorLevel);
         int nextUpgradeLevel = BodyPartDataSO.GetNextUpgradeLevelForLevel(GeneratorLevel + 1);
-
+        if (nextUpgradeLevel == -1)
+        {
+            return 1;
+        }
         if (nextUpgradeLevel <= previousUpgradeLevel)
         {
             Debug.LogWarning("Next upgrade level is not higher than the previous upgrade level.");
