@@ -1,10 +1,13 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Generator : MonoBehaviour, ITickable
 {
     public GeneratorSO GeneratorSO;
     public BodyPartDataSO BodyPartDataSO;
+    public MultiplierSystem MultiplierSystem;
+    public List<MultiplierDataSO> LevelUpMultipliers;
+    public DoubleVariable GlobalMultiplier;
 
 
     [SerializeField]
@@ -12,12 +15,14 @@ public class Generator : MonoBehaviour, ITickable
 
     public int GeneratorLevel = 0;
     public double TotalProduction;
+    public double TotalMultiplier;
     public double CurrentUpgradeCost;
 
     public CharacterVisualManager CharacterVisualManager;
 
     private void Awake()
     {
+        MultiplierSystem = new MultiplierSystem();
         CalculateUpgradeCost();
         CalculateTotalProduction();
     }
@@ -29,8 +34,8 @@ public class Generator : MonoBehaviour, ITickable
 
     private void CalculateTotalProduction()
     {
-        // Add multipliers to the end here
-        TotalProduction = GeneratorSO.BaseProduction * GeneratorLevel;
+        TotalMultiplier = MultiplierSystem.CalculateTotalMultiplier();
+        TotalProduction = (GeneratorSO.BaseProduction * GeneratorLevel) * TotalMultiplier * GlobalMultiplier.Value;
     }
 
     private void CalculateUpgradeCost() 
@@ -70,6 +75,20 @@ public class Generator : MonoBehaviour, ITickable
         {
             Debug.Log($"Updating Body Part sprite for level {GeneratorLevel}");
             CharacterVisualManager.UpdateBodyPartSprite(this, BodyPartDataSO);
+        }
+
+        //Handle multiplier for level intervals
+        if (GeneratorLevel == 25) 
+        {
+            MultiplierSystem.AddMultiplier(LevelUpMultipliers[0]);
+        }
+        if (GeneratorLevel == 50)
+        {
+            MultiplierSystem.AddMultiplier(LevelUpMultipliers[1]);
+        }
+        if (GeneratorLevel == 100)
+        {
+            MultiplierSystem.AddMultiplier(LevelUpMultipliers[2]);
         }
     }
 

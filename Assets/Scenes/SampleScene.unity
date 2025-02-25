@@ -532,6 +532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GeneratorSO: {fileID: 11400000, guid: 135caea4e7d05e34f8d2222ef5ce3a5a, type: 2}
   BodyPartDataSO: {fileID: 11400000, guid: 2a66cb463b82a41439e5866198d00b06, type: 2}
+  LevelUpMultipliers: []
   _playerCurrency: {fileID: 11400000, guid: 6909a9024195e5c44800423c634159de, type: 2}
   GeneratorLevel: 0
   TotalProduction: 0
@@ -1094,6 +1095,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GeneratorSO: {fileID: 11400000, guid: 5ec11be87ac82b24db6cdd9a30f8afb6, type: 2}
   BodyPartDataSO: {fileID: 11400000, guid: 1a2c9cbc31466094891110e5e7bfbacc, type: 2}
+  LevelUpMultipliers: []
   _playerCurrency: {fileID: 11400000, guid: 6909a9024195e5c44800423c634159de, type: 2}
   GeneratorLevel: 0
   TotalProduction: 0
@@ -1795,6 +1797,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GeneratorSO: {fileID: 11400000, guid: 1ea3f296fe0eabb489229f82fb488f96, type: 2}
   BodyPartDataSO: {fileID: 11400000, guid: 362b2bbf3b776564a83638aa0232a40d, type: 2}
+  LevelUpMultipliers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _playerCurrency: {fileID: 11400000, guid: 6909a9024195e5c44800423c634159de, type: 2}
   GeneratorLevel: 0
   TotalProduction: 0
