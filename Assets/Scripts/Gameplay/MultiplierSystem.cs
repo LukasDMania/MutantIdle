@@ -59,6 +59,13 @@ public class MultiplierSystem : MonoBehaviour
         totalMultiplier = additiveMultiplier * multiplicativeBonus;
         return totalMultiplier;
     }
+
+    public void PrestigeResetMultiplierSystem()
+    {
+            activeMultipliers?.Clear();
+            inactiveMultipliers?.Clear();
+    }
+
 }
 
 public enum MultiplierType

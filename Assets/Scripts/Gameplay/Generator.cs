@@ -125,4 +125,12 @@ public class Generator : MonoBehaviour, ITickable
         // Clamp the result between 0 and 1 (valid percentage for sliders)
         return Mathf.Clamp01(progress);
     }
+
+    public void GeneratorPrestigeReset() 
+    {
+        _multiplierSystem.PrestigeResetMultiplierSystem();
+        GeneratorLevel = 0;
+        CalculateUpgradeCost();
+        CalculateTotalProduction();
+    }
 }

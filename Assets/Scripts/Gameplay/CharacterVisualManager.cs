@@ -45,4 +45,13 @@ public class CharacterVisualManager : MonoBehaviour
             //StartCoroutine(PlayUpgradeEffect(spriteRenderer));
         }
     }
+
+    public void PrestigeResetCharacterVisualManager() 
+    {
+        foreach (var bodyPart in _activeBodyParts.Values)
+        {
+            Destroy(bodyPart.gameObject);
+        }
+        _activeBodyParts.Clear();
+    }
 }
