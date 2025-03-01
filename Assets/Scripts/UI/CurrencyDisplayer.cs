@@ -1,12 +1,13 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CurrencyDisplayer : MonoBehaviour 
 {
     [SerializeField]
     private DoubleVariable _currentCurrency;
     [SerializeField]
-    private TextMeshProUGUI _textToDisplayCurrency;
+    private TextMeshPro _textToDisplayCurrency;
     [SerializeField]
     private DoubleVariable _tickInterval;
 

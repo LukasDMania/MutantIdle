@@ -6,8 +6,8 @@ public class Generator : MonoBehaviour, ITickable
 {
     public GeneratorSO GeneratorSO;
     public BodyPartDataSO BodyPartDataSO;
-    public MultiplierSystem MultiplierSystem;
-    public List<MultiplierDataSO> LevelUpMultipliers;
+    [SerializeField]
+    private MultiplierSystem _multiplierSystem;
     public DoubleVariable GlobalMultiplier;
 
 
@@ -23,7 +23,7 @@ public class Generator : MonoBehaviour, ITickable
 
     private void Awake()
     {
-        MultiplierSystem = new MultiplierSystem();
+        _multiplierSystem = GetComponent<MultiplierSystem>();
         CalculateUpgradeCost();
         CalculateTotalProduction();
     }
@@ -31,11 +31,13 @@ public class Generator : MonoBehaviour, ITickable
     private void Start()
     {
         CharacterVisualManager = FindFirstObjectByType<CharacterVisualManager>();
+        Debug.Log("BASEPRODUCTION" + GeneratorSO.BaseProduction);
+        Debug.Log("MULTIPLIER" + TotalMultiplier);
     }
 
     public void CalculateTotalProduction()
     {
-        TotalMultiplier = MultiplierSystem.CalculateTotalMultiplier() * GlobalMultiplier.Value;
+        TotalMultiplier = _multiplierSystem.CalculateTotalMultiplier() * GlobalMultiplier.Value;
         TotalProduction = (GeneratorSO.BaseProduction * GeneratorLevel) * TotalMultiplier;
     }
 
@@ -78,15 +80,15 @@ public class Generator : MonoBehaviour, ITickable
         //Handle multiplier for level intervals
         if (GeneratorLevel == 25) 
         {
-            MultiplierSystem.AddMultiplier(LevelUpMultipliers[0]);
+            _multiplierSystem.AddMultiplier(0);
         }
         if (GeneratorLevel == 50)
         {
-            MultiplierSystem.AddMultiplier(LevelUpMultipliers[1]);
+            _multiplierSystem.AddMultiplier(1);
         }
         if (GeneratorLevel == 100)
         {
-            MultiplierSystem.AddMultiplier(LevelUpMultipliers[2]);
+            _multiplierSystem.AddMultiplier(2);
         }
 
         CalculateTotalProduction();

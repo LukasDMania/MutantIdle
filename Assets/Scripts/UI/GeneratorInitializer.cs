@@ -19,6 +19,7 @@ public class GeneratorInitializer : MonoBehaviour
 
     private void Start()
     {
+        _generators = new List<Generator>(GetComponentsInChildren<Generator>());
         PopulateGeneratorsInUI();
     }
 }

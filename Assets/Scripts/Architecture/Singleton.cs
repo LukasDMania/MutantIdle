@@ -1,12 +1,4 @@
 using UnityEngine;
-
-using UnityEngine;
-
-/// <summary>
-/// Generic abstract singleton class for Unity.
-/// Ensures that only one instance of the class exists.
-/// </summary>
-/// <typeparam name="T">The type of the singleton class.</typeparam>
 public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
 {
     private static T _instance;

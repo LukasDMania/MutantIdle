@@ -1,20 +1,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MultiplierSystem
+public class MultiplierSystem : MonoBehaviour 
 {
-    public Dictionary<int, MultiplierDataSO> multipliersDictionary = new Dictionary<int, MultiplierDataSO>();
+    private MultiplierManager _multiplierManager;
 
-    public void AddMultiplier(MultiplierDataSO multiplierDataSO) 
+
+    public Dictionary<int, MultiplierDataSO> activeMultipliers = new Dictionary<int, MultiplierDataSO>();
+    public Dictionary<int, MultiplierDataSO> inactiveMultipliers = new Dictionary<int, MultiplierDataSO>();
+
+    private void Start() 
     {
-        if (multipliersDictionary.ContainsKey(multiplierDataSO.MultiplierId)) { return; }
-        multipliersDictionary.Add(multiplierDataSO.MultiplierId, multiplierDataSO);
+        _multiplierManager = FindFirstObjectByType<MultiplierManager>();
+        Debug.Log("MULTIPLIERMAANGEROBJ= " + _multiplierManager);
+    }
+
+    public void AddMultiplier(int multiplierId) 
+    {
+        Debug.Log("MultiplierId: " + multiplierId);
+        Debug.Log("_activeMultipliers: " + activeMultipliers);
+        if (activeMultipliers.ContainsKey(multiplierId)) { return; }
+        
+        MultiplierDataSO multiplierDataToAdd = _multiplierManager.GetMultiplierDataSO(multiplierId);
+        activeMultipliers.Add(multiplierDataToAdd.MultiplierId, multiplierDataToAdd);
     }
 
     public void RemoveMultiplier(int multiplierId) 
     {
-        if (!multipliersDictionary.ContainsKey(multiplierId)) { return; }
-        multipliersDictionary.Remove(multiplierId);
+        
+        if (!activeMultipliers.ContainsKey(multiplierId)) { return; }
+        inactiveMultipliers.Add(activeMultipliers[multiplierId].MultiplierId, activeMultipliers[multiplierId]);
+        activeMultipliers.Remove(multiplierId);
+
     }
 
     public double CalculateTotalMultiplier() 
@@ -23,7 +40,7 @@ public class MultiplierSystem
         double additiveMultiplier = 1;
         double multiplicativeBonus = 1;
 
-        foreach (var multiplier in multipliersDictionary)
+        foreach (var multiplier in activeMultipliers)
         {
             switch (multiplier.Value.MultiplierType)
             {

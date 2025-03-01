@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Generator Level Upgrade 2
   m_EditorClassIdentifier: 
   MultiplierId: 1
-  MultiplierName: Generator Levelup
+  MultiplierName: Generator Levelup 2
   MultiplierDescription: Upgrade for when a gen reaches a certain level
   MultiplierType: 1
   MultiplierDuration: -1
