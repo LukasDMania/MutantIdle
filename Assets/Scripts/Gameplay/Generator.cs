@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Generator : MonoBehaviour, ITickable
+public class Generator : MonoBehaviour, ITickable, IPrestigable
 {
     public GeneratorSO GeneratorSO;
     public BodyPartDataSO BodyPartDataSO;
@@ -126,9 +126,9 @@ public class Generator : MonoBehaviour, ITickable
         return Mathf.Clamp01(progress);
     }
 
-    public void GeneratorPrestigeReset() 
+    public void PrestigeReset()
     {
-        _multiplierSystem.PrestigeResetMultiplierSystem();
+        _multiplierSystem.PrestigeReset();
         GeneratorLevel = 0;
         CalculateUpgradeCost();
         CalculateTotalProduction();

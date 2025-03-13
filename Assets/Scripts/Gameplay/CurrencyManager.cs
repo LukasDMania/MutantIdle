@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class CurrencyManager : MonoBehaviour
+public class CurrencyManager : MonoBehaviour, IPrestigable
 {
     public DoubleVariable StartingCurrency;
     public DoubleVariable PlayerCurrency;
@@ -15,13 +15,8 @@ public class CurrencyManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void PrestigeReset()
     {
-        
-    }
-
-    private void FixedUpdate()
-    {
-        
+        PlayerCurrency.SetValue(StartingCurrency.Value);
     }
 }

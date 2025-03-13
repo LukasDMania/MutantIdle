@@ -633,7 +633,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tickInterval: {fileID: 11400000, guid: 19014aad2cd6e0b4dac2be84b98a69dc, type: 2}
   _totalTicks: {fileID: 11400000, guid: 798a3bd8238c1784d9be1283d1e17447, type: 2}
-  _onGameTick:
+  OnGameTick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: 0bbfdcbe43fb3634b9c0db9b1f3ebdd4, type: 2}
@@ -920,6 +920,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5002450287610657243, guid: 59e2982d6acc85e4c9444013aca77d8e, type: 3}
   m_PrefabInstance: {fileID: 4208795871322969274}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &707323372 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 322111255754801304, guid: 59e2982d6acc85e4c9444013aca77d8e, type: 3}
+  m_PrefabInstance: {fileID: 4208795871322969274}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa7a9a393fb3e6745abf1e33d3e4eba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &722487307
 GameObject:
   m_ObjectHideFlags: 0
@@ -1699,6 +1710,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1195209650}
   - component: {fileID: 1195209649}
+  - component: {fileID: 1195209651}
   m_Layer: 0
   m_Name: CurrencyManager
   m_TagString: Untagged
@@ -1736,6 +1748,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1195209651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195209648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 975e335bcc8d0de47b6f4a471e9e685b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameEvent: {fileID: 11400000, guid: 090f06e640262574cb0b12fad318496d, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1195209649}
+        m_TargetAssemblyTypeName: CurrencyManager, Assembly-CSharp
+        m_MethodName: PrestigeReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1338000559
 GameObject:
   m_ObjectHideFlags: 0
@@ -1779,6 +1819,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1409037831}
   - component: {fileID: 1409037830}
+  - component: {fileID: 1409037832}
   m_Layer: 0
   m_Name: GlobalMultiplier
   m_TagString: Untagged
@@ -1816,6 +1857,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1409037832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409037829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58c2fdbfe2714634db8781c34f3020e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1433776806
 GameObject:
   m_ObjectHideFlags: 0
@@ -1825,8 +1878,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1433776807}
+  - component: {fileID: 1433776809}
+  - component: {fileID: 1433776808}
+  - component: {fileID: 1433776810}
   m_Layer: 0
-  m_Name: PrestigeCurrencyManager
+  m_Name: PrestigeManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1847,6 +1903,77 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1433776808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433776806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63c6317f8f3860849b5bb387446e6abd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnPrestigeEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 090f06e640262574cb0b12fad318496d, type: 2}
+        m_TargetAssemblyTypeName: VoidGameEvent, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1433776809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433776806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44cdddc786fefc347a2c3a9abe6cf7fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartingPrestigeCurrency: {fileID: 11400000, guid: 4558620d48f4ef642b2c3cba997791eb, type: 2}
+  PrestigeCurrency: {fileID: 11400000, guid: 386d17f7315ff5641bf64df49f10665c, type: 2}
+  PrestigeCurrencyToAddAfterPrestige: {fileID: 11400000, guid: 174e631b713ac7745ae06def26ac46e0, type: 2}
+  _resetPrestigeCurrency: 1
+--- !u!114 &1433776810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433776806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 975e335bcc8d0de47b6f4a471e9e685b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameEvent: {fileID: 11400000, guid: 090f06e640262574cb0b12fad318496d, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1433776809}
+        m_TargetAssemblyTypeName: PrestigeCurrencyHandler, Assembly-CSharp
+        m_MethodName: PrestigeReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1656523784
 GameObject:
   m_ObjectHideFlags: 0
@@ -2290,6 +2417,34 @@ PrefabInstance:
       propertyPath: GlobalMultiplier
       value: 
       objectReference: {fileID: 11400000, guid: 3db83568fccc75441874d52868194bbf, type: 2}
+    - target: {fileID: 2742932673028629507, guid: 59e2982d6acc85e4c9444013aca77d8e, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742932673028629507, guid: 59e2982d6acc85e4c9444013aca77d8e, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742932673028629507, guid: 59e2982d6acc85e4c9444013aca77d8e, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 707323372}
+    - target: {fileID: 2742932673028629507, guid: 59e2982d6acc85e4c9444013aca77d8e, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742932673028629507, guid: 59e2982d6acc85e4c9444013aca77d8e, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnTick
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742932673028629507, guid: 59e2982d6acc85e4c9444013aca77d8e, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Generator, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742932673028629507, guid: 59e2982d6acc85e4c9444013aca77d8e, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5002450287610657243, guid: 59e2982d6acc85e4c9444013aca77d8e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -709.3064

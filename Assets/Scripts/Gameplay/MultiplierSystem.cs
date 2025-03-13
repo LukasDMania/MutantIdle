@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MultiplierSystem : MonoBehaviour 
+public class MultiplierSystem : MonoBehaviour, IPrestigable
 {
     private MultiplierManager _multiplierManager;
 
@@ -60,12 +60,11 @@ public class MultiplierSystem : MonoBehaviour
         return totalMultiplier;
     }
 
-    public void PrestigeResetMultiplierSystem()
+    public void PrestigeReset()
     {
-            activeMultipliers?.Clear();
-            inactiveMultipliers?.Clear();
+        activeMultipliers?.Clear();
+        inactiveMultipliers?.Clear();
     }
-
 }
 
 public enum MultiplierType

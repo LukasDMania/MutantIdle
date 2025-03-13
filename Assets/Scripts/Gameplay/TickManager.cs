@@ -13,9 +13,7 @@ public class TickManager : Singleton<TickManager>
     private double _tickTimer;
 
 
-    // Events 
-    [SerializeField]
-    private UnityEvent _onGameTick;
+    public UnityEvent OnGameTick;
 
     private void Update()
     {
@@ -32,6 +30,6 @@ public class TickManager : Singleton<TickManager>
 
     private void PerformTick()
     {
-        _onGameTick?.Invoke();
+        OnGameTick?.Invoke();
     }
 }
