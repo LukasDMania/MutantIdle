@@ -7,6 +7,8 @@ public class GlobalMultiplierHandler : MonoBehaviour, IPrestigable
     [SerializeField]
     private bool _ResetGlobalMultiplier;
 
+    public DoubleVariable PrestigeCurrency;
+
     private MultiplierSystem _multiplierSystem;
 
     
@@ -23,6 +25,12 @@ public class GlobalMultiplierHandler : MonoBehaviour, IPrestigable
             GlobalMultiplier.SetValue(StartingGlobalMultiplier.Value);
         }
     }
+
+    public void CalculateGlobalMultiplier() 
+    {
+        double multiplier = _multiplierSystem.CalculateTotalMultiplier() * (1 + PrestigeCurrency.Value);
+    }
+
     public void PrestigeReset()
     {
         _multiplierSystem.PrestigeReset();
