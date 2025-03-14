@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c4d8f01f2b0d624587754065921cc29, type: 3}
+  m_Name: BodyPartDataSO_2
+  m_EditorClassIdentifier: 
+  BodyPartName: BodyPart_2
+  SpriteUpgrades:
+  - levelRequired: 0
+    sprite: {fileID: -8192070143745944247, guid: 973e0809a5e476b41a7747c20d9683ce, type: 3}
+  - levelRequired: 25
+    sprite: {fileID: -551857181963897858, guid: c082cdf41759aea4fb8881724ac3e545, type: 3}
+  - levelRequired: 50
+    sprite: {fileID: -911596234263627225, guid: 4aff8e3986975124686ddb2514e84ff2, type: 3}
+  - levelRequired: 100
+    sprite: {fileID: 2770597615911486984, guid: ccb2fe05dca1d8146a731fd6b19408b8, type: 3}
+  AttachmentPoint: {x: 0.42, y: -0.36}
+  SortingOrder: 1
+  BodyPartCategory: 3
+  isFlippable: 1

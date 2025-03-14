@@ -7,9 +7,11 @@ public class CurrencyDisplayer : MonoBehaviour
     [SerializeField]
     private DoubleVariable _currentCurrency;
     [SerializeField]
-    private TextMeshPro _textToDisplayCurrency;
+    private TextMeshProUGUI _textToDisplayCurrency;
     [SerializeField]
     private DoubleVariable _tickInterval;
+
+    public NumberFormatterSO NumberFormatter;
 
     private double _targetCurrency = 0;
     private double _previousCurrencyAmount = 0;
@@ -18,7 +20,8 @@ public class CurrencyDisplayer : MonoBehaviour
 
     private void Update()
     {
-        ClampCurrencyChange();
+
+        _textToDisplayCurrency.text = NumberFormatter.FormatNumber(_currentCurrency.Value, NumberFormatterSO.FormatType.Suffix);
     }
 
     private void ClampCurrencyChange() 

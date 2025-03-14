@@ -20,6 +20,7 @@ public class GeneratorUIElement : MonoBehaviour
     private TextMeshProUGUI _upgradeButtonText;
     [SerializeField]
     private Image _bodyPartSprite;
+    public NumberFormatterSO NumberFormatter;
 
 
     private Generator _linkedGenerator;
@@ -36,10 +37,10 @@ public class GeneratorUIElement : MonoBehaviour
         _bodyPartSprite.sprite = _linkedGenerator.BodyPartDataSO.GetSpriteForLevel(_linkedGenerator.GeneratorLevel);
         _generatorLevel.text = $"{_linkedGenerator.GeneratorLevel}";
         _slider.value = _linkedGenerator.CalculatePercentageToNextMultiplier();
-        _productionRate.text = $"{_linkedGenerator.TotalProduction:F2}/t";
+        _productionRate.text = $"{NumberFormatter.FormatNumber(_linkedGenerator.TotalProduction, NumberFormatterSO.FormatType.Suffix)}/t";
         //_linkedGenerator.CalculateTotalProduction();
-        _generatorMultiplier.text = $"Multiplier: {_linkedGenerator.TotalMultiplier:F2}x";
-        _upgradeButtonText.text = $"{_linkedGenerator.CurrentUpgradeCost:F2}";
+        _generatorMultiplier.text = $"Multiplier: {NumberFormatter.FormatNumber(_linkedGenerator.TotalMultiplier, NumberFormatterSO.FormatType.Suffix)}x";
+        _upgradeButtonText.text = $"{NumberFormatter.FormatNumber(_linkedGenerator.CurrentUpgradeCost, NumberFormatterSO.FormatType.Suffix)}";
     }
 
     private void OnUgradeClicked()

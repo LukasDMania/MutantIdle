@@ -518,7 +518,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 39.51517, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1120,6 +1120,7 @@ MonoBehaviour:
   _upgradeButton: {fileID: 3310315187390209906}
   _upgradeButtonText: {fileID: 17643043805613720}
   _bodyPartSprite: {fileID: 2287257029753253479}
+  NumberFormatter: {fileID: 11400000, guid: 9ef40422c81e5ea41b1937195bb121f6, type: 2}
 --- !u!1 &8276101631622543806
 GameObject:
   m_ObjectHideFlags: 0

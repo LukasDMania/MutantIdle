@@ -51,8 +51,8 @@ MonoBehaviour:
   GeneratorSO: {fileID: 0}
   BodyPartDataSO: {fileID: 0}
   _multiplierSystem: {fileID: 0}
-  GlobalMultiplier: {fileID: 0}
-  _playerCurrency: {fileID: 0}
+  GlobalMultiplier: {fileID: 11400000, guid: 3db83568fccc75441874d52868194bbf, type: 2}
+  _playerCurrency: {fileID: 11400000, guid: 6909a9024195e5c44800423c634159de, type: 2}
   GeneratorLevel: 0
   TotalProduction: 0
   TotalMultiplier: 0
