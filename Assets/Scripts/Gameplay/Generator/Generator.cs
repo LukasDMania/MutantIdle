@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Generator : MonoBehaviour, ITickable, IPrestigable
 {
@@ -20,6 +21,8 @@ public class Generator : MonoBehaviour, ITickable, IPrestigable
     public double CurrentUpgradeCost;
 
     public CharacterVisualManager CharacterVisualManager;
+
+    public UnityEvent OnGeneratorUpgrade;
 
     private void Awake()
     {
@@ -93,6 +96,7 @@ public class Generator : MonoBehaviour, ITickable, IPrestigable
 
         CalculateTotalProduction();
         CalculateUpgradeCost();
+        OnGeneratorUpgrade?.Invoke();
     }
 
 

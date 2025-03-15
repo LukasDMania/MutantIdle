@@ -15,6 +15,10 @@ public class TickManager : Singleton<TickManager>
 
     public UnityEvent OnGameTick;
 
+    private void Start()
+    {
+    }
+
     private void Update()
     {
         if (_tickTimer > _tickInterval.Value)

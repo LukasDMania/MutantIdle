@@ -58,6 +58,21 @@ MonoBehaviour:
   TotalMultiplier: 0
   CurrentUpgradeCost: 0
   CharacterVisualManager: {fileID: 0}
+  OnGeneratorUpgrade:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 732d2fb4adfd70748a96caa3e6212e5a, type: 2}
+        m_TargetAssemblyTypeName: VoidGameEvent, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2742932673028629507
 MonoBehaviour:
   m_ObjectHideFlags: 0
