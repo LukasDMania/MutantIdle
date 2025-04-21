@@ -1,7 +1,5 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem.iOS;
 
 public class TickManager : Singleton<TickManager>
 {
@@ -24,7 +22,7 @@ public class TickManager : Singleton<TickManager>
         if (_tickTimer > _tickInterval.Value)
         {
             _tickTimer = 0;
-            _totalTicks.SetValue(_totalTicks.Value + 1);
+            _totalTicks.ApplyChange(1);
 
             PerformTick();
         }

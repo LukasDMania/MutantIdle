@@ -1033,6 +1033,7 @@ GameObject:
   - component: {fileID: 3379534278637016926}
   - component: {fileID: 8845463002905247523}
   - component: {fileID: 2224749706348379787}
+  - component: {fileID: -4386697942056550514}
   m_Layer: 5
   m_Name: GeneratorPanel
   m_TagString: Untagged
@@ -1121,6 +1122,34 @@ MonoBehaviour:
   _upgradeButtonText: {fileID: 17643043805613720}
   _bodyPartSprite: {fileID: 2287257029753253479}
   NumberFormatter: {fileID: 11400000, guid: 9ef40422c81e5ea41b1937195bb121f6, type: 2}
+--- !u!114 &-4386697942056550514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7773358492032656571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 975e335bcc8d0de47b6f4a471e9e685b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameEvent: {fileID: 11400000, guid: 3c95aedc04f6a6b4a809debbb28512cd, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2224749706348379787}
+        m_TargetAssemblyTypeName: GeneratorUIElement, Assembly-CSharp
+        m_MethodName: PrestigeReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8276101631622543806
 GameObject:
   m_ObjectHideFlags: 0

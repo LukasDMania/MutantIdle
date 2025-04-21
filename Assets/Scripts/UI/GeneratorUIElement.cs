@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GeneratorUIElement : MonoBehaviour
+public class GeneratorUIElement : MonoBehaviour, IPrestigable
 {
     [Header("UI References")]
     [SerializeField]
@@ -34,18 +34,24 @@ public class GeneratorUIElement : MonoBehaviour
 
     private void UpdateUI()
     {
+        Debug.Log("LINKEDGEN LEVEL " + _linkedGenerator.GeneratorLevel);
         _bodyPartSprite.sprite = _linkedGenerator.BodyPartDataSO.GetSpriteForLevel(_linkedGenerator.GeneratorLevel);
         _generatorLevel.text = $"{_linkedGenerator.GeneratorLevel}";
         _slider.value = _linkedGenerator.CalculatePercentageToNextMultiplier();
-        _productionRate.text = $"{NumberFormatter.FormatNumber(_linkedGenerator.TotalProduction, NumberFormatterSO.FormatType.Suffix)}/t";
+        _productionRate.text = $"{NumberFormatter.FormatNumber(_linkedGenerator.TotalProductionWithoutGlobal, NumberFormatterSO.FormatType.Suffix)}/t";
         //_linkedGenerator.CalculateTotalProduction();
-        _generatorMultiplier.text = $"Multiplier: {NumberFormatter.FormatNumber(_linkedGenerator.TotalMultiplier, NumberFormatterSO.FormatType.Suffix)}x";
+        _generatorMultiplier.text = $"Multiplier: {NumberFormatter.FormatNumber(_linkedGenerator.TotalMultiplierWithoutGlobal, NumberFormatterSO.FormatType.Suffix)}x";
         _upgradeButtonText.text = $"{NumberFormatter.FormatNumber(_linkedGenerator.CurrentUpgradeCost, NumberFormatterSO.FormatType.Suffix)}";
     }
 
     private void OnUgradeClicked()
     {
         _linkedGenerator.UpgradeGenerator();
+        UpdateUI();
+    }
+
+    public void PrestigeReset()
+    {
         UpdateUI();
     }
 }

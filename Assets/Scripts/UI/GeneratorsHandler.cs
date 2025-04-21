@@ -2,7 +2,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GeneratorsHandler : MonoBehaviour
+public class GeneratorsHandler : MonoBehaviour, IPrestigable
 {
     [SerializeField]
     private List<Generator> _generators;
@@ -15,6 +15,8 @@ public class GeneratorsHandler : MonoBehaviour
     {
         _generators = new List<Generator>(GetComponentsInChildren<Generator>());
         PopulateGeneratorsInUI();
+
+        CalculateTotalGeneratorProduction();
     }
 
     private void PopulateGeneratorsInUI()
@@ -37,5 +39,10 @@ public class GeneratorsHandler : MonoBehaviour
             }
         }
         _TotalCurrencyGeneration.SetValue(totalProduction);
+    }
+
+    public void PrestigeReset()
+    {
+        CalculateTotalGeneratorProduction();
     }
 }

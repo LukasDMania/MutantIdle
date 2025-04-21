@@ -2,7 +2,7 @@ using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterVisualManager : MonoBehaviour
+public class CharacterVisualManager : MonoBehaviour, IPrestigable
 {
     [SerializeField]
     private Transform _characterRoot;
@@ -125,5 +125,14 @@ public class CharacterVisualManager : MonoBehaviour
 
         int randomIndex = UnityEngine.Random.Range(0, easeTypes.Length);
         return easeTypes[randomIndex];
+    }
+
+    public void PrestigeReset()
+    {
+        foreach (var bodyPart in _activeBodyParts.Values)
+        {
+            Destroy(bodyPart.gameObject);
+        }
+        _activeBodyParts.Clear();
     }
 }

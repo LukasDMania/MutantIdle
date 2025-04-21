@@ -10,6 +10,7 @@ public class Generator : MonoBehaviour, ITickable, IPrestigable
     [SerializeField]
     private MultiplierSystem _multiplierSystem;
     public DoubleVariable GlobalMultiplier;
+    public DoubleVariable PrestigePointsToAddAfterPrestige;
 
 
     [SerializeField]
@@ -17,7 +18,9 @@ public class Generator : MonoBehaviour, ITickable, IPrestigable
 
     public int GeneratorLevel = 0;
     public double TotalProduction;
+    public double TotalProductionWithoutGlobal;
     public double TotalMultiplier;
+    public double TotalMultiplierWithoutGlobal;
     public double CurrentUpgradeCost;
 
     public CharacterVisualManager CharacterVisualManager;
@@ -40,8 +43,10 @@ public class Generator : MonoBehaviour, ITickable, IPrestigable
 
     public void CalculateTotalProduction()
     {
+        TotalMultiplierWithoutGlobal = _multiplierSystem.CalculateTotalMultiplier();
         TotalMultiplier = _multiplierSystem.CalculateTotalMultiplier() * GlobalMultiplier.Value;
         TotalProduction = (GeneratorSO.BaseProduction * GeneratorLevel) * TotalMultiplier;
+        TotalProductionWithoutGlobal = (GeneratorSO.BaseProduction * GeneratorLevel) * TotalMultiplierWithoutGlobal;
     }
 
     private void CalculateUpgradeCost() 
@@ -84,6 +89,7 @@ public class Generator : MonoBehaviour, ITickable, IPrestigable
         if (GeneratorLevel == 25) 
         {
             _multiplierSystem.AddMultiplier(0);
+
         }
         if (GeneratorLevel == 50)
         {
@@ -92,6 +98,7 @@ public class Generator : MonoBehaviour, ITickable, IPrestigable
         if (GeneratorLevel == 100)
         {
             _multiplierSystem.AddMultiplier(2);
+            PrestigePointsToAddAfterPrestige.ApplyChange(1);
         }
 
         CalculateTotalProduction();

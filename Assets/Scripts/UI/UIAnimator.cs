@@ -8,9 +8,12 @@ public class UIAnimator : MonoBehaviour
     public Vector2 visiblePosition; // Position where the panel is visible
     public float duration = 0.5f; // Animation duration
 
-    private bool isPanelVisible = false;
+    private bool isPanelVisible = true;
 
     // Function to move the panel in and out
+    private void Start()
+    {
+    }
     public void TogglePanel()
     {
         if (isPanelVisible)
