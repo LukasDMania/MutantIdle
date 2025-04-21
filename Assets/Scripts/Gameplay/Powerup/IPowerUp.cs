@@ -11,4 +11,8 @@ public interface IPowerUp
 public class PowerUpDataHolder 
 {
     public DoubleVariable PlayerCurrency;
+    public DoubleVariable PrestigePointsToGainOnPrestige;
+    public DoubleVariable PrestigeCurrency;
+    public DoubleVariable TickInterval;
+    public NumberFormatterSO NumberFormatter;
 }

@@ -1,0 +1,22 @@
+using UnityEngine;
+
+public class InputManager : MonoBehaviour
+{
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            SaveSystemManager.Instance.Save();
+        }
+        if (Input.GetKeyUp(KeyCode.L))
+        {
+            SaveSystemManager.Instance.Load();
+        }
+        if (Input.GetKeyUp(KeyCode.D))
+        {
+            SaveSystemManager.Instance.DeleteSave();
+        }
+    }
+}

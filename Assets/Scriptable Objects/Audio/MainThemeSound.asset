@@ -9,8 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3d5817742fa17f4ba7fdde019e90da7, type: 3}
-  m_Name: StartingGlobalMultiplier
+  m_Script: {fileID: 11500000, guid: bcfd157141e622f49b55bcc9711bf55f, type: 3}
+  m_Name: MainThemeSound
   m_EditorClassIdentifier: 
-  DeveloperDescription: 
-  Value: 1
+  Name: 0
+  AudioClip: {fileID: 8300000, guid: 76ac91b30705e4d4d9afa5ba5f8ecf4c, type: 3}
+  Volume: 1
+  Pitch: 1
+  Loop: 1
+  PlaySource: {fileID: 0}

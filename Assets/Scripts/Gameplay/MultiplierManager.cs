@@ -8,6 +8,8 @@ public class MultiplierManager : MonoBehaviour
 
     private Dictionary<int, MultiplierDataSO> _allMultipliers = new Dictionary<int, MultiplierDataSO>();
 
+    public bool dictionaryBuilt = false;
+
     private void Awake()
     {
         BuildMultiplierDictionary();
@@ -15,6 +17,7 @@ public class MultiplierManager : MonoBehaviour
 
     public MultiplierDataSO GetMultiplierDataSO(int multiplierId)
     {
+        BuildMultiplierDictionary();
         if (!_allMultipliers.ContainsKey(multiplierId)) { return null; }
         Debug.Log(_allMultipliers[multiplierId]);
         return _allMultipliers[multiplierId];
@@ -22,17 +25,21 @@ public class MultiplierManager : MonoBehaviour
 
     private void BuildMultiplierDictionary() 
     {
-        _allMultipliers.Clear();
-        foreach (var multiplier in AllMultipliersList)
+        if (!dictionaryBuilt)
         {
-            if (!_allMultipliers.ContainsKey(multiplier.MultiplierId))
+            _allMultipliers.Clear();
+            foreach (var multiplier in AllMultipliersList)
             {
-                _allMultipliers.Add(multiplier.MultiplierId, multiplier);
+                if (!_allMultipliers.ContainsKey(multiplier.MultiplierId))
+                {
+                    _allMultipliers.Add(multiplier.MultiplierId, multiplier);
+                }
+                else
+                {
+                    Debug.Log($"Duplicate found: {multiplier.MultiplierId}, Name: {multiplier.MultiplierName}");
+                }
             }
-            else
-            {
-                Debug.Log($"Duplicate found: {multiplier.MultiplierId}, Name: {multiplier.MultiplierName}");
-            }
+            dictionaryBuilt = true;
         }
     }
 }

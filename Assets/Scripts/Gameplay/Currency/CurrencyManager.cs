@@ -19,4 +19,5 @@ public class CurrencyManager : MonoBehaviour, IPrestigable
     {
         PlayerCurrency.SetValue(StartingCurrency.Value);
     }
+
 }

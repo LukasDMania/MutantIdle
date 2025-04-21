@@ -10,6 +10,6 @@ public class DoubleCurrencyPowerUp : IPowerUp
 
     public string TextToDisplayAfterActivation()
     {
-        return "TextTest2";
+        return "DNA Doubled!";
     }
 }

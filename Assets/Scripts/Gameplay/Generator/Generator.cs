@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -43,6 +44,7 @@ public class Generator : MonoBehaviour, ITickable, IPrestigable
 
     public void CalculateTotalProduction()
     {
+        if (_multiplierSystem == null) { _multiplierSystem = GetComponent<MultiplierSystem>(); };
         TotalMultiplierWithoutGlobal = _multiplierSystem.CalculateTotalMultiplier();
         TotalMultiplier = _multiplierSystem.CalculateTotalMultiplier() * GlobalMultiplier.Value;
         TotalProduction = (GeneratorSO.BaseProduction * GeneratorLevel) * TotalMultiplier;
@@ -60,15 +62,19 @@ public class Generator : MonoBehaviour, ITickable, IPrestigable
             CurrentUpgradeCost = GeneratorSO.BaseCost * Mathf.Pow(GeneratorSO.GrowthRate, GeneratorLevel);
         }
     }
-
-    public void UpgradeGenerator() 
+    private bool CanUpgrade() 
     {
         Debug.Log("Upgrading generator attempting");
         if (CurrentUpgradeCost > _playerCurrency.Value)
         {
             Debug.Log($"Can't upgrade: cost {CurrentUpgradeCost}, currency {_playerCurrency.Value}");
-            return;
+            return false;
         }
+        return true;
+    }
+    public void UpgradeGenerator() 
+    {
+        if (!CanUpgrade()) { return; }
 
         _playerCurrency.ApplyChange(-CurrentUpgradeCost);
         GeneratorLevel++;
@@ -98,12 +104,23 @@ public class Generator : MonoBehaviour, ITickable, IPrestigable
         if (GeneratorLevel == 100)
         {
             _multiplierSystem.AddMultiplier(2);
-            PrestigePointsToAddAfterPrestige.ApplyChange(1);
         }
+        if (GeneratorLevel % 100 == 0 && GeneratorLevel <= 2000)
+        {
+            PrestigePointsToAddAfterPrestige.ApplyChange(GeneratorLevel / 100);
+        }
+
 
         CalculateTotalProduction();
         CalculateUpgradeCost();
         OnGeneratorUpgrade?.Invoke();
+    }
+    public void UpgradeGeneratorMax() 
+    {
+        while (CanUpgrade())
+        {
+            UpgradeGenerator();
+        }
     }
 
 
@@ -144,4 +161,40 @@ public class Generator : MonoBehaviour, ITickable, IPrestigable
         CalculateUpgradeCost();
         CalculateTotalProduction();
     }
+
+    public GeneratorSaveData Save()
+    {
+        return new GeneratorSaveData
+        {
+            GeneratorName = gameObject.name,
+            GeneratorLevelToSave = GeneratorLevel,
+            UnlockedMultipliers = _multiplierSystem.UnlockedMultipliers()
+        };
+    }
+
+    public void Load(GeneratorSaveData saveData)
+    {
+        GeneratorLevel = saveData.GeneratorLevelToSave;
+        Debug.Log("UNLOCKEDMULTIPLIERS " + saveData.UnlockedMultipliers.ToString());
+        foreach (var upgradeId in saveData.UnlockedMultipliers)
+        {
+
+            if (_multiplierSystem == null)
+            {
+                _multiplierSystem = GetComponent<MultiplierSystem>();
+            }
+            Debug.Log($"{upgradeId} UPGRADE IDUPGR");
+            _multiplierSystem.AddMultiplier(upgradeId);
+        }
+        CalculateUpgradeCost();
+        CalculatePercentageToNextMultiplier();
+        CalculateTotalProduction();
+    }
+}
+[Serializable]
+public class GeneratorSaveData
+{
+    public string GeneratorName;
+    public int GeneratorLevelToSave;
+    public int[] UnlockedMultipliers;
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,7 +10,7 @@ public class TickManager : Singleton<TickManager>
     private DoubleVariable _totalTicks;
 
     private double _tickTimer;
-
+    public double TotalAfkSeconds;
 
     public UnityEvent OnGameTick;
 
@@ -33,5 +34,9 @@ public class TickManager : Singleton<TickManager>
     private void PerformTick()
     {
         OnGameTick?.Invoke();
+    }
+
+    private void OnApplicationQuit()
+    {
     }
 }

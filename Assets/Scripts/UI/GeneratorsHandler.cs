@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GeneratorsHandler : MonoBehaviour, IPrestigable
 {
@@ -10,6 +11,13 @@ public class GeneratorsHandler : MonoBehaviour, IPrestigable
     private GeneratorUIManager _generatorUIManager;
     [SerializeField]
     private DoubleVariable _TotalCurrencyGeneration;
+
+    public DoubleVariable PlayerCurrency;
+    public DoubleVariable TickInterval;
+    public DoubleVariable AfkSeconds;
+    public DoubleVariable AfkGenerationPostCalculation;
+
+    public UnityEvent OnAfkGenerationCalculated;
 
     private void Start()
     {
@@ -44,5 +52,17 @@ public class GeneratorsHandler : MonoBehaviour, IPrestigable
     public void PrestigeReset()
     {
         CalculateTotalGeneratorProduction();
+    }
+    public void CalculateAfkCurrencyGenerated() 
+    {
+        _generators = new List<Generator>(GetComponentsInChildren<Generator>());
+        Debug.Log("CALCULATEAFKCURR _TotalCurrencyGen" + _TotalCurrencyGeneration.Value);
+        CalculateTotalGeneratorProduction();
+        Debug.Log("CALCULATEAFKCURR _TotalCurrencyGen POST" + _TotalCurrencyGeneration.Value);
+        double afkGeneration = AfkSeconds.Value / TickInterval.Value * _TotalCurrencyGeneration.Value;
+        Debug.Log(afkGeneration);
+        AfkGenerationPostCalculation.SetValue(afkGeneration);
+        OnAfkGenerationCalculated?.Invoke();
+        PlayerCurrency.ApplyChange(afkGeneration);
     }
 }

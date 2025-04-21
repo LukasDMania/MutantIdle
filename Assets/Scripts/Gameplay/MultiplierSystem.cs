@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MultiplierSystem : MonoBehaviour, IPrestigable
@@ -15,8 +16,26 @@ public class MultiplierSystem : MonoBehaviour, IPrestigable
         Debug.Log("MULTIPLIERMAANGEROBJ= " + _multiplierManager);
     }
 
+    public int[] UnlockedMultipliers() 
+    {
+        var x = activeMultipliers.Values
+                .Select(m => m.MultiplierId)
+                .ToArray();
+
+        Debug.Log("MULTIPLIER ID TO SAVE IN LENGHT " + activeMultipliers.Count);
+        foreach (var item in x)
+        {
+            Debug.Log("MULTIPLIER IDS TO SAVE IN " + item.ToString());
+        }
+        return x;
+    }
+
     public void AddMultiplier(int multiplierId) 
     {
+        if (_multiplierManager == null)
+        {
+            _multiplierManager = FindFirstObjectByType<MultiplierManager>();
+        }
         Debug.Log("MultiplierId: " + multiplierId);
         Debug.Log("_activeMultipliers: " + activeMultipliers);
         if (activeMultipliers.ContainsKey(multiplierId)) { return; }

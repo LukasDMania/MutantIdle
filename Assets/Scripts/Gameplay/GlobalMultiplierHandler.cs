@@ -28,9 +28,11 @@ public class GlobalMultiplierHandler : MonoBehaviour, IPrestigable
 
     public void CalculateGlobalMultiplier() 
     {
-        GlobalMultiplier.SetValue(_multiplierSystem.CalculateTotalMultiplier() + (1 + (PrestigeCurrency.Value / 10)));
+        Debug.Log("GLOBAL MULTIPLIER SYSTEM " + _multiplierSystem.CalculateTotalMultiplier());
+        Debug.Log("GLOBAL MULTIPLIER SYSTEM PRESTIGECURRENCY " + PrestigeCurrency.Value);
+        GlobalMultiplier.SetValue(_multiplierSystem.CalculateTotalMultiplier() * (1 + (PrestigeCurrency.Value / 10)));
         Debug.Log("PrestigeCurrency.Value / 10   " + PrestigeCurrency.Value / 10);
-        Debug.Log(GlobalMultiplier.Value);
+        Debug.Log("GLOBAL MULTIPLIER " + GlobalMultiplier.Value);
     }
 
     public void PrestigeReset()

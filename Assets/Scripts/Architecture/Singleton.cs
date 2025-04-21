@@ -9,10 +9,8 @@ public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
         {
             if (_instance == null)
             {
-                // Try to find an existing instance in the scene
                 _instance = FindFirstObjectByType<T>();
 
-                // If no instance exists, create a new one
                 if (_instance == null)
                 {
                     GameObject singletonObject = new GameObject(typeof(T).Name);

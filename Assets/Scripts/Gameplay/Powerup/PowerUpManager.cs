@@ -29,7 +29,8 @@ public class PowerUpManager : MonoBehaviour
         _powerupFactories = new List<IPowerUpFactory>
         {
             new DoubleCurrencyPowerUpFactory(),
-            new ProductionBoostPowerUpFactory()
+            new GainPrestigePointsPowerUpFactory(),
+
             // Extend Here
         };
     }
@@ -46,7 +47,7 @@ public class PowerUpManager : MonoBehaviour
 
     private void RandomizePowerUpInterval()
     {
-        _powerupInterval = UnityEngine.Random.Range(60f,300f);
+        _powerupInterval = UnityEngine.Random.Range(6f,10f);
     }
 
     private void SpawnPowerUpImage()

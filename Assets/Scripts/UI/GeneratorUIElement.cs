@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class GeneratorUIElement : MonoBehaviour, IPrestigable
@@ -28,7 +29,7 @@ public class GeneratorUIElement : MonoBehaviour, IPrestigable
     public void Initialize(Generator generatorToLink)
     {
         _linkedGenerator = generatorToLink;
-        _upgradeButton.onClick.AddListener(OnUgradeClicked);
+        _upgradeButton.onClick.AddListener(OnUpgradeClicked);
         UpdateUI();
     }
 
@@ -44,11 +45,18 @@ public class GeneratorUIElement : MonoBehaviour, IPrestigable
         _upgradeButtonText.text = $"{NumberFormatter.FormatNumber(_linkedGenerator.CurrentUpgradeCost, NumberFormatterSO.FormatType.Suffix)}";
     }
 
-    private void OnUgradeClicked()
+    private void OnUpgradeClicked()
     {
+        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+        {
+            Debug.Log("Control key held down during upgrade.");
+            _linkedGenerator.UpgradeGeneratorMax();
+        }
+
         _linkedGenerator.UpgradeGenerator();
         UpdateUI();
     }
+
 
     public void PrestigeReset()
     {

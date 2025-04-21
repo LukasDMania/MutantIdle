@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3d5817742fa17f4ba7fdde019e90da7, type: 3}
-  m_Name: StartingGlobalMultiplier
+  m_Script: {fileID: 11500000, guid: cb4bcc3070dd72942b8ba8963cf6c81a, type: 3}
+  m_Name: AudioSystem
   m_EditorClassIdentifier: 
-  DeveloperDescription: 
-  Value: 1
+  Sounds:
+  - {fileID: 11400000, guid: d444c4ef355d3c349b1144c0133eecbd, type: 2}

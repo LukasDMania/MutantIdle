@@ -47,9 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Manager: {fileID: 0}
   powerUpSprites:
-  - {fileID: 5155163167032735316, guid: 3f4b17328a28cc845b4881dbb101e587, type: 3}
-  - {fileID: 5155163167032735316, guid: 9704bb25f14f44d4ba7654a3f64ba619, type: 3}
-  - {fileID: 4641925799719628613, guid: 3ae28ef6bdb88334da2efa89d965cb9d, type: 3}
+  - {fileID: -1712652417972277662, guid: 1ce06a61854425b468f47d03a9405b81, type: 3}
+  - {fileID: -2064597953104895705, guid: 5a313033653ce3b458546204183a5f15, type: 3}
 --- !u!212 &3024535460299987590
 SpriteRenderer:
   m_ObjectHideFlags: 0
