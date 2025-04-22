@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d44b7b7c9f7ee54e8fc984b6c581f29, type: 3}
+  m_Name: PrestigeAmountAchievement 1
+  m_EditorClassIdentifier: 
+  AchievementName: Prestige Legend
+  AchievementId: Prestige_Amount_1
+  AchievementDescription: Prestige 5 times
+  AchievementRewardText: 'Achievement unlocked: Evo Points Gain Multiplier + 0.25'
+  OnAchievementUnlocked:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  AchievementUnlocked: 0
+  TotalTimesPrestiged: {fileID: 11400000, guid: 4ff3578a9a1a77f41ac2e4e637d0f920, type: 2}
+  PrestigeMultiplierGain: {fileID: 11400000, guid: b0a5027b63be91847b98707254bcffc2, type: 2}
+  RequiredPrestiges: 5
+  BuffAmount: 0.25

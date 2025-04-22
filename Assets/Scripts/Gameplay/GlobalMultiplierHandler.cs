@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GlobalMultiplierHandler : MonoBehaviour, IPrestigable
@@ -24,15 +25,20 @@ public class GlobalMultiplierHandler : MonoBehaviour, IPrestigable
         {
             GlobalMultiplier.SetValue(StartingGlobalMultiplier.Value);
         }
+        CalculateGlobalMultiplier();
     }
 
     public void CalculateGlobalMultiplier() 
     {
-        Debug.Log("GLOBAL MULTIPLIER SYSTEM " + _multiplierSystem.CalculateTotalMultiplier());
-        Debug.Log("GLOBAL MULTIPLIER SYSTEM PRESTIGECURRENCY " + PrestigeCurrency.Value);
-        GlobalMultiplier.SetValue(_multiplierSystem.CalculateTotalMultiplier() * (1 + (PrestigeCurrency.Value / 10)));
-        Debug.Log("PrestigeCurrency.Value / 10   " + PrestigeCurrency.Value / 10);
-        Debug.Log("GLOBAL MULTIPLIER " + GlobalMultiplier.Value);
+        if (PrestigeCurrency.Value > 0)
+        {
+            GlobalMultiplier.SetValue(_multiplierSystem.CalculateTotalMultiplier() + (PrestigeCurrency.Value / 10));
+
+        }
+        else
+        {
+            GlobalMultiplier.SetValue(_multiplierSystem.CalculateTotalMultiplier());
+        }
     }
 
     public void PrestigeReset()
@@ -40,4 +46,30 @@ public class GlobalMultiplierHandler : MonoBehaviour, IPrestigable
         _multiplierSystem.PrestigeReset();
         CalculateGlobalMultiplier();
     }
+
+    public GlobalMultiplierSaveData Save()
+    {
+        GlobalMultiplierSaveData h = new GlobalMultiplierSaveData();
+        h.UnlockedMultipliers = _multiplierSystem.UnlockedMultipliers();
+        return h;
+    }
+
+    public void Load(GlobalMultiplierSaveData saveData)
+    {
+        foreach (var upgradeId in saveData.UnlockedMultipliers)
+        {
+
+            if (_multiplierSystem == null)
+            {
+                _multiplierSystem = GetComponent<MultiplierSystem>();
+            }
+            _multiplierSystem.AddMultiplier(upgradeId);
+        }
+    }
+}
+
+[Serializable]
+public class GlobalMultiplierSaveData
+{
+    public int[] UnlockedMultipliers;
 }

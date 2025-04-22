@@ -53,10 +53,14 @@ MonoBehaviour:
   _multiplierSystem: {fileID: 0}
   GlobalMultiplier: {fileID: 11400000, guid: 3db83568fccc75441874d52868194bbf, type: 2}
   PrestigePointsToAddAfterPrestige: {fileID: 11400000, guid: 174e631b713ac7745ae06def26ac46e0, type: 2}
+  PrestigePointGainMultiplier: {fileID: 11400000, guid: b0a5027b63be91847b98707254bcffc2, type: 2}
   _playerCurrency: {fileID: 11400000, guid: 6909a9024195e5c44800423c634159de, type: 2}
+  TotalGeneratorLevel: {fileID: 11400000, guid: f2f4e6bfa571dca45ab99d1b8852021f, type: 2}
   GeneratorLevel: 0
   TotalProduction: 0
+  TotalProductionWithoutGlobal: 0
   TotalMultiplier: 0
+  TotalMultiplierWithoutGlobal: 0
   CurrentUpgradeCost: 0
   CharacterVisualManager: {fileID: 0}
   OnGeneratorUpgrade:

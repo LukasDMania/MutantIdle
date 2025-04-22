@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BaseCost: 60
   GrowthRate: 1.15
-  BaseProduction: 20
+  BaseProduction: 6

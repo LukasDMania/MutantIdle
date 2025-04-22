@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+
 public class GameEventListener<T> : MonoBehaviour, IGameEventListener<T>
 {
     [Tooltip("Event to register with")]

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6389175bcc9ce394884eb474a4835809, type: 3}
+  m_Name: TotalGeneratorLevel 6
+  m_EditorClassIdentifier: 
+  AchievementName: Total Generator Level
+  AchievementId: TotalGenLvl_6
+  AchievementDescription: Reach a combined 5000 Generator Levels
+  AchievementRewardText: 'Achievement unlocked: Generators Multiplier * 16'
+  OnAchievementUnlocked:
+    m_PersistentCalls:
+      m_Calls: []
+  AchievementUnlocked: 0
+  TotalGeneratorLevel: {fileID: 11400000, guid: f2f4e6bfa571dca45ab99d1b8852021f, type: 2}
+  LevelRequirement: 5000
+  UpgradeIdToApply: 9

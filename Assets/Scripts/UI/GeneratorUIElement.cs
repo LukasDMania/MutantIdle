@@ -33,9 +33,8 @@ public class GeneratorUIElement : MonoBehaviour, IPrestigable
         UpdateUI();
     }
 
-    private void UpdateUI()
+    public void UpdateUI()
     {
-        Debug.Log("LINKEDGEN LEVEL " + _linkedGenerator.GeneratorLevel);
         _bodyPartSprite.sprite = _linkedGenerator.BodyPartDataSO.GetSpriteForLevel(_linkedGenerator.GeneratorLevel);
         _generatorLevel.text = $"{_linkedGenerator.GeneratorLevel}";
         _slider.value = _linkedGenerator.CalculatePercentageToNextMultiplier();

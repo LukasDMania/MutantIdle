@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 400561e54b90bdc4b979fe34be1f0eb7, type: 3}
+  m_Name: TotalTicksAchievement8
+  m_EditorClassIdentifier: 
+  AchievementName: Total Ticks 8
+  AchievementId: TotalTicks_8
+  AchievementDescription: Reach 250000 total ticks in the game
+  AchievementRewardText: 'Achievement unlocked: Tick Interval -0.25'
+  OnAchievementUnlocked:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 4960667ee6f5da746992dedd58d2ee1a, type: 2}
+        m_TargetAssemblyTypeName: BaseGameEvent`1[[System.String, mscorlib
+        m_MethodName: Raise
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  AchievementUnlocked: 0
+  TotalTicks: {fileID: 11400000, guid: 798a3bd8238c1784d9be1283d1e17447, type: 2}
+  TickInterval: {fileID: 11400000, guid: 19014aad2cd6e0b4dac2be84b98a69dc, type: 2}
+  IntervalBuffAmount: -0.25
+  RequiredTicks: 250000

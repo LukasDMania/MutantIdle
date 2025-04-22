@@ -8,6 +8,7 @@ using UnityEngine.Events;
 
 public class PowerUpManager : MonoBehaviour
 {
+    public DoubleVariable AmountOfPowerUpsClciked;
     public PowerUpDataHolder powerUpDataHolder;
     public UnityEvent OnPowerUpClicked;
 
@@ -78,6 +79,8 @@ public class PowerUpManager : MonoBehaviour
     public void ActivatePowerUp()
     {
         Debug.Log("Power-up clicked!");
+        AmountOfPowerUpsClciked.ApplyChange(1);
+        AchievementManager.Instance.TryUnlockingAchievements();
 
         if (_powerupFactories != null) 
         {

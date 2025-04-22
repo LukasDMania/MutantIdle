@@ -4,12 +4,16 @@ public class PrestigeCurrencyHandler : MonoBehaviour, IPrestigable
 {
     public DoubleVariable StartingPrestigeCurrency;
     public DoubleVariable PrestigeCurrency;
+    public DoubleVariable PrestigeGainPercentage;
+    public DoubleVariable PrestigeGainMult;
 
     public DoubleVariable StartingPrestigeCurrencyToAddAfterPrestige;
     public DoubleVariable PrestigeCurrencyToAddAfterPrestige;
 
     [SerializeField] private bool _resetPrestigeCurrency;
     [SerializeField] private bool _resetPrestigeCurrencyToAddAfterPrestige;
+
+    public bool GeneratePrestigeCurr = false;
 
     public void Start()
     {
@@ -26,5 +30,11 @@ public class PrestigeCurrencyHandler : MonoBehaviour, IPrestigable
     {
         PrestigeCurrency.ApplyChange(PrestigeCurrencyToAddAfterPrestige.Value);
         PrestigeCurrencyToAddAfterPrestige.SetValue(0);
+    }
+
+    public void GeneratePrestigePoints() 
+    {
+        if (!GeneratePrestigeCurr) { return; }
+        PrestigeCurrency.ApplyChange(PrestigeCurrency.Value * PrestigeGainPercentage.Value * PrestigeGainMult.Value);
     }
 }

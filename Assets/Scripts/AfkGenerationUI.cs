@@ -8,14 +8,24 @@ public class AfkGenerationUI : MonoBehaviour
     public DoubleVariable AfkCurrencyGenerated;
     public NumberFormatterSO NumberFormatterSO;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private bool hidden = true;
     void Start()
     {
         
+    }
+    private void Update()
+    {
+        if (Input.GetMouseButton(0) && !hidden)
+        {
+            HideAfkGainContainer();
+            hidden = true;
+        }
     }
 
     public void ShowAfkGainContainer() 
     {
         Container.SetActive(true);
+        hidden = false;
         TextMeshProUGUI textMeshProUGUI = Container.GetComponentInChildren<TextMeshProUGUI>();
 
         textMeshProUGUI.text = $"You've earned {NumberFormatterSO.FormatNumber(AfkCurrencyGenerated.Value, NumberFormatterSO.FormatType.Suffix)} DNA While you were away";

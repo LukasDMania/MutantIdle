@@ -12,10 +12,12 @@ public class Generator : MonoBehaviour, ITickable, IPrestigable
     private MultiplierSystem _multiplierSystem;
     public DoubleVariable GlobalMultiplier;
     public DoubleVariable PrestigePointsToAddAfterPrestige;
+    public DoubleVariable PrestigePointGainMultiplier;
 
 
     [SerializeField]
     private DoubleVariable _playerCurrency;
+    public DoubleVariable TotalGeneratorLevel;
 
     public int GeneratorLevel = 0;
     public double TotalProduction;
@@ -38,8 +40,6 @@ public class Generator : MonoBehaviour, ITickable, IPrestigable
     private void Start()
     {
         CharacterVisualManager = FindFirstObjectByType<CharacterVisualManager>();
-        Debug.Log("BASEPRODUCTION" + GeneratorSO.BaseProduction);
-        Debug.Log("MULTIPLIER" + TotalMultiplier);
     }
 
     public void CalculateTotalProduction()
@@ -78,6 +78,7 @@ public class Generator : MonoBehaviour, ITickable, IPrestigable
 
         _playerCurrency.ApplyChange(-CurrentUpgradeCost);
         GeneratorLevel++;
+        TotalGeneratorLevel.ApplyChange(1);
 
         // Handle visuals
         if (GeneratorLevel == 1)
@@ -105,9 +106,9 @@ public class Generator : MonoBehaviour, ITickable, IPrestigable
         {
             _multiplierSystem.AddMultiplier(2);
         }
-        if (GeneratorLevel % 100 == 0 && GeneratorLevel <= 2000)
+        if (GeneratorLevel % 100 == 0 && GeneratorLevel <= 5000)
         {
-            PrestigePointsToAddAfterPrestige.ApplyChange(GeneratorLevel / 100);
+            PrestigePointsToAddAfterPrestige.ApplyChange((GeneratorLevel / 100) * PrestigePointGainMultiplier.Value);
         }
 
 
@@ -123,7 +124,10 @@ public class Generator : MonoBehaviour, ITickable, IPrestigable
         }
     }
 
-
+    public void AddMultiplier(int id) 
+    {
+        _multiplierSystem.AddMultiplier(id);
+    }
     public void OnTick()
     {
         _playerCurrency.ApplyChange(TotalProduction);
@@ -144,11 +148,6 @@ public class Generator : MonoBehaviour, ITickable, IPrestigable
         }
 
         float progress = (float)(GeneratorLevel - previousUpgradeLevel) / (nextUpgradeLevel - previousUpgradeLevel);
-
-        Debug.Log($"GeneratorLevel: {GeneratorLevel}");
-        Debug.Log($"PreviousUpgradeLevel: {previousUpgradeLevel}");
-        Debug.Log($"NextUpgradeLevel: {nextUpgradeLevel}");
-        Debug.Log($"Progress: {progress}");
 
         // Clamp the result between 0 and 1 (valid percentage for sliders)
         return Mathf.Clamp01(progress);
@@ -175,7 +174,6 @@ public class Generator : MonoBehaviour, ITickable, IPrestigable
     public void Load(GeneratorSaveData saveData)
     {
         GeneratorLevel = saveData.GeneratorLevelToSave;
-        Debug.Log("UNLOCKEDMULTIPLIERS " + saveData.UnlockedMultipliers.ToString());
         foreach (var upgradeId in saveData.UnlockedMultipliers)
         {
 
@@ -183,7 +181,6 @@ public class Generator : MonoBehaviour, ITickable, IPrestigable
             {
                 _multiplierSystem = GetComponent<MultiplierSystem>();
             }
-            Debug.Log($"{upgradeId} UPGRADE IDUPGR");
             _multiplierSystem.AddMultiplier(upgradeId);
         }
         CalculateUpgradeCost();

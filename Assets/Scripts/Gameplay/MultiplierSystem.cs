@@ -10,10 +10,9 @@ public class MultiplierSystem : MonoBehaviour, IPrestigable
     public Dictionary<int, MultiplierDataSO> activeMultipliers = new Dictionary<int, MultiplierDataSO>();
     public Dictionary<int, MultiplierDataSO> inactiveMultipliers = new Dictionary<int, MultiplierDataSO>();
 
-    private void Start() 
+    private void Awake() 
     {
         _multiplierManager = FindFirstObjectByType<MultiplierManager>();
-        Debug.Log("MULTIPLIERMAANGEROBJ= " + _multiplierManager);
     }
 
     public int[] UnlockedMultipliers() 
@@ -21,12 +20,6 @@ public class MultiplierSystem : MonoBehaviour, IPrestigable
         var x = activeMultipliers.Values
                 .Select(m => m.MultiplierId)
                 .ToArray();
-
-        Debug.Log("MULTIPLIER ID TO SAVE IN LENGHT " + activeMultipliers.Count);
-        foreach (var item in x)
-        {
-            Debug.Log("MULTIPLIER IDS TO SAVE IN " + item.ToString());
-        }
         return x;
     }
 
@@ -81,7 +74,20 @@ public class MultiplierSystem : MonoBehaviour, IPrestigable
 
     public void PrestigeReset()
     {
-        activeMultipliers?.Clear();
+        List<MultiplierDataSO> data = new List<MultiplierDataSO>();
+        foreach (var item in activeMultipliers)
+        {
+            if (item.Value.IsPermanent)
+            {
+                data.Add(item.Value);
+            }
+        }
+        activeMultipliers.Clear();
+        foreach (var multiplier in data) 
+        {
+            AddMultiplier(multiplier.MultiplierId);
+        }
+
         inactiveMultipliers?.Clear();
     }
 }

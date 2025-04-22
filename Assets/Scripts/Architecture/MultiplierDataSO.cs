@@ -12,4 +12,5 @@ public class MultiplierDataSO : ScriptableObject
     public MultiplierType MultiplierType;
     public float MultiplierDuration;
     public double MultiplierValue;
+    public bool IsPermanent = false;
 }
