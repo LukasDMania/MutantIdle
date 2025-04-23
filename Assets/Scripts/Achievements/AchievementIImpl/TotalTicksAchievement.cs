@@ -8,10 +8,14 @@ public class TotalTicksAchievement : AchievementBaseSO
     public double IntervalBuffAmount;
 
     public double RequiredTicks;
-
+    
     public override void ApplyAchievement()
     {
-        PrestigeCurrencyHandler p = FindFirstObjectByType<PrestigeCurrencyHandler>();
+        if (TickInterval.Value >= 0.01)
+        {
+            TickInterval.ApplyChange(IntervalBuffAmount);
+        }
+
     }
     public override bool RequirementFullFilled()
     {

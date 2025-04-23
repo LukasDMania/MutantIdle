@@ -68,7 +68,7 @@ public class SaveSystemManager : MonoBehaviour
         SaveData data = JsonUtility.FromJson<SaveData>(json);
         Debug.Log("Loaded: " + json);
 
-        PlayerCurrency.SetValue(data.PlayerCurrency);
+        //PlayerCurrency.SetValue(data.PlayerCurrency);
         PrestigeCurrency.SetValue(data.PrestigeCurrency);
         TickInterval.SetValue(data.TickInterval);
         PrestigePointsToAdd.SetValue(data.PrestigePointsToAdd);
