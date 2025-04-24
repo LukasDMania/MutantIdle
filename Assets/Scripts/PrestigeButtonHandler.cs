@@ -5,8 +5,16 @@ public class PrestigeButtonHandler : MonoBehaviour
     public GameObject PrestigeButton;
     public GameObject PrestigeConfirmationPanel;
 
-    public void ConfirmPrestige() 
+    public AchievementTextDisplayUI AchievementTextDisplayUI;
+
+    public void ConfirmPrestige()
     {
+        GameObject generator6 = GameObject.Find("Generator 6");
+        if (generator6.GetComponent<Generator>().GeneratorLevel == 0)
+        {
+            AchievementTextDisplayUI.DisplayAchievementText("You need to have reached the 6th body part to prestige");
+            return;
+        }
         PrestigeConfirmationPanel.SetActive(true);
     }
     public void CloseConfirmationPanel() 

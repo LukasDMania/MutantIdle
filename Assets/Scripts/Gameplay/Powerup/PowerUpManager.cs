@@ -48,7 +48,7 @@ public class PowerUpManager : MonoBehaviour
 
     private void RandomizePowerUpInterval()
     {
-        _powerupInterval = UnityEngine.Random.Range(6f,10f);
+        _powerupInterval = UnityEngine.Random.Range(90f,600f);
     }
 
     private void SpawnPowerUpImage()

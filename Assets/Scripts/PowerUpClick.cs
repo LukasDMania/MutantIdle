@@ -19,6 +19,7 @@ public class PowerUpClick : MonoBehaviour
         {
             gameObject.AddComponent<PolygonCollider2D>();
         }
+        Destroy(gameObject, 10f);
     }
 
     private void OnMouseDown()

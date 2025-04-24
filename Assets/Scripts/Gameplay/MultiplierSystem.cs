@@ -90,6 +90,12 @@ public class MultiplierSystem : MonoBehaviour, IPrestigable
 
         inactiveMultipliers?.Clear();
     }
+
+    public void ResetMultiplierSystem()
+    {
+        activeMultipliers?.Clear();
+        inactiveMultipliers?.Clear();
+    }
 }
 
 public enum MultiplierType

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0482641da580f82439b070f4a0e5454f, type: 3}
+  m_Name: PowerUpsCaughtAchievement 4
+  m_EditorClassIdentifier: 
+  AchievementName: Power Ups Caught 4
+  AchievementId: Power Ups Caught 4
+  AchievementDescription: Catch 50 Total Power Ups
+  AchievementRewardText: 'Achievement unlocked: Tick Interval -0.040'
+  OnAchievementUnlocked:
+    m_PersistentCalls:
+      m_Calls: []
+  AchievementUnlocked: 0
+  TotalPowerUpsCaught: {fileID: 11400000, guid: 79d1a53f7d651fe4a9e21b89644ceeed, type: 2}
+  TickInterval: {fileID: 11400000, guid: 19014aad2cd6e0b4dac2be84b98a69dc, type: 2}
+  RequirementAmount: 50
+  BuffAmount: -0.04

@@ -11,11 +11,11 @@ public class TotalTicksAchievement : AchievementBaseSO
     
     public override void ApplyAchievement()
     {
-        if (TickInterval.Value >= 0.01)
+        TickInterval.ApplyChange(IntervalBuffAmount);
+        if (TickInterval.Value <= 0)
         {
-            TickInterval.ApplyChange(IntervalBuffAmount);
+            TickInterval.SetValue(0.01);
         }
-
     }
     public override bool RequirementFullFilled()
     {

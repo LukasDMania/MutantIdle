@@ -9,8 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3d5817742fa17f4ba7fdde019e90da7, type: 3}
-  m_Name: PlayerCurrency
+  m_Script: {fileID: 11500000, guid: 9dcd2b3cc77211b41bb1becf5a59e81d, type: 3}
+  m_Name: GlobalMultiplier 3
   m_EditorClassIdentifier: 
-  DeveloperDescription: 
-  Value: 5
+  MultiplierId: 13
+  MultiplierName: Global Multiplier
+  MultiplierDescription: GM *
+  MultiplierType: 1
+  MultiplierDuration: -1
+  MultiplierValue: 8
+  IsPermanent: 1

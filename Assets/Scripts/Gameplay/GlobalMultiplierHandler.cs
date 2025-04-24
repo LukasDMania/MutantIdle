@@ -41,6 +41,11 @@ public class GlobalMultiplierHandler : MonoBehaviour, IPrestigable
         }
     }
 
+    public void AddMultiplier(int id) 
+    {
+        _multiplierSystem.AddMultiplier(id);
+    }
+
     public void PrestigeReset()
     {
         _multiplierSystem.PrestigeReset();

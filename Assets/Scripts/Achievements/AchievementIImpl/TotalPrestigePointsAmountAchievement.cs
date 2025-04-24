@@ -12,7 +12,7 @@ public class TotalPrestigePointsAmountAchievement : AchievementBaseSO
     public override void ApplyAchievement()
     {
         PrestigeCurrencyHandler p = FindFirstObjectByType<PrestigeCurrencyHandler>();
-        p.GeneratePrestigeCurr = true;
+        p.GeneratePrestigeCurr.SetValue(true);
 
         PrestigeGenerationPercentage.ApplyChange(BuffToPercentageOfPrestigePointsGenerated);
     }

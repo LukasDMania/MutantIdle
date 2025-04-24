@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -20,9 +21,11 @@ public class SaveSystemManager : MonoBehaviour
     public DoubleVariable TotalPowerupsClicked;
     public DoubleVariable PrestigeGainMult;
     public DoubleVariable PrestigeGainPercentage;
+    public BoolVariable GeneratePrestigePoints;
 
     public UnityEvent OnGameSaved;
     public UnityEvent OnGameLoaded;
+    public UnityEvent OnGameReset;
 
     private string _savePath => Path.Combine(Application.persistentDataPath, "savedata.json");
 
@@ -60,7 +63,7 @@ public class SaveSystemManager : MonoBehaviour
         Debug.Log("Saved to: " + _savePath);
         OnGameSaved?.Invoke();
     }
-    public void Load() 
+    public void Load()
     {
         if (!File.Exists(_savePath)) { return; }
 
@@ -79,6 +82,7 @@ public class SaveSystemManager : MonoBehaviour
         TotalPowerupsClicked.SetValue(data.TotalPowerupsClicked);
         PrestigeGainMult.SetValue(data.PrestigeGainMult);
         PrestigeGainPercentage.SetValue(data.PrestigeGainPercentage);
+        GeneratePrestigePoints.SetValue(data.GenPP);
 
         GlobalMultiplierHandler h = FindFirstObjectByType<GlobalMultiplierHandler>();
         h.Load(data.GlobalMultiplierSaveData);
@@ -88,7 +92,7 @@ public class SaveSystemManager : MonoBehaviour
         {
             foreach (var generator in generators)
             {
-                if (generator.gameObject.name == generatorSaveData.GeneratorName) 
+                if (generator.gameObject.name == generatorSaveData.GeneratorName)
                 {
                     generator.Load(generatorSaveData);
                     break;
@@ -101,7 +105,7 @@ public class SaveSystemManager : MonoBehaviour
         OnGameLoaded?.Invoke();
     }
 
-    
+
 
     private SaveData SetupSaveData()
     {
@@ -117,6 +121,7 @@ public class SaveSystemManager : MonoBehaviour
         saveData.TotalPowerupsClicked = TotalPowerupsClicked.Value;
         saveData.PrestigeGainMult = PrestigeGainMult.Value;
         saveData.PrestigeGainPercentage = PrestigeGainPercentage.Value;
+        saveData.GenPP = GeneratePrestigePoints.Value;
 
         GlobalMultiplierHandler h = FindFirstObjectByType<GlobalMultiplierHandler>();
         saveData.GlobalMultiplierSaveData = h.Save();
@@ -146,8 +151,26 @@ public class SaveSystemManager : MonoBehaviour
             Debug.Log("Save file deleted.");
         }
     }
+    public void DeleteSaveAndResetGame()
+    {
+        DeleteSave();
+        ResetMainVars();
+        ResetGameData();
+        Save();
+        OnGameReset?.Invoke();
+    }
 
-    private void ResetGameData() { }
+    private void ResetGameData()
+    {
+        AchievementManager.Instance.ResetAllAchievements();
+        Generator[] generators = FindObjectsByType<Generator>(FindObjectsSortMode.None);
+        foreach (var generator in generators)
+        {
+            Debug.Log(generator.GeneratorLevel);
+            generator.ResetGenerator();
+            Debug.Log(generator.GeneratorLevel);
+        }
+    }
     private void ResetMainVars()
     {
         PlayerCurrency.SetValue(5);
@@ -158,8 +181,10 @@ public class SaveSystemManager : MonoBehaviour
         TotalAchievementsUnlocked.SetValue(0);
         TotalPrestiges.SetValue(0);
         TotalPowerupsClicked.SetValue(0);
+        TotalGeneratorLevel.SetValue(0);
         PrestigeGainMult.SetValue(1);
         PrestigeGainPercentage.SetValue(0);
+        GeneratePrestigePoints.SetValue(false);
     }
 
     private void OnApplicationQuit()
@@ -168,6 +193,11 @@ public class SaveSystemManager : MonoBehaviour
         PlayerPrefs.SetString("LastPlayed", timeNow);
         PlayerPrefs.Save();
         Save();
+    }
+
+    public void ResetVarsForPrestige() 
+    {
+        TotalGeneratorLevel.SetValue(0);
     }
 }
 

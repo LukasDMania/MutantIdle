@@ -19,4 +19,5 @@ public class SaveData
     public double TotalPowerupsClicked;
     public double PrestigeGainMult;
     public double PrestigeGainPercentage;
+    public bool GenPP;
 }

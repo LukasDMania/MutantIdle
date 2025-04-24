@@ -15,15 +15,22 @@ public class AchievementManager : Singleton<AchievementManager>
     }
     public void TryUnlockingAchievements()
     {
+        bool achievementsWereUnlocked = false;
         foreach (var achievement in AchievementList)
         {
             if (!achievement.AchievementUnlocked && achievement.RequirementFullFilled())
             {
                 achievement.AchievementUnlocked = true;
+                achievementsWereUnlocked = true;
                 AchievementTextDisplayUI.DisplayAchievementText(achievement.AchievementRewardText);
                 achievement.ApplyAchievement();
                 TotalAchievementsUnlocked.ApplyChange(1);
             }
+        }
+        
+        if (achievementsWereUnlocked) 
+        {
+            TryUnlockingAchievements();
         }
     }
 
@@ -54,6 +61,14 @@ public class AchievementManager : Singleton<AchievementManager>
         }
     }
 
+
+    public void ResetAllAchievements()
+    {
+        foreach (var achievement in AchievementList)
+        {
+            achievement.AchievementUnlocked = false;
+        }
+    }
 }
 
 [Serializable]

@@ -33,7 +33,7 @@ public class AudioSystemSO : ScriptableObject
     {
         foreach (var sound in Sounds)
         {
-            if (!(sound.Type == type)) { return; }
+            if (!(sound.Type == type)) { continue; }
             sound.PlaySource.volume = targetVolume;
         }
     }
@@ -48,7 +48,7 @@ public class AudioSystemSO : ScriptableObject
     {
         foreach (var sound in Sounds)
         {
-            if (!(sound.Type == type)) { return; }
+            if (!(sound.Type == type)) { continue; }
             sound.PlaySource.volume = targetPitch;
         }
     }

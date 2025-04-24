@@ -161,6 +161,14 @@ public class Generator : MonoBehaviour, ITickable, IPrestigable
         CalculateTotalProduction();
     }
 
+    public void ResetGenerator() 
+    {
+        GeneratorLevel = 0;
+        _multiplierSystem.ResetMultiplierSystem();
+        CalculateUpgradeCost();
+        CalculateTotalProduction();
+    }
+
     public GeneratorSaveData Save()
     {
         return new GeneratorSaveData

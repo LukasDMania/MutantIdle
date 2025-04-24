@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
+    public AchievementContainerUIScript AchievementUI;
 
     // Update is called once per frame
     void Update()
@@ -16,7 +17,11 @@ public class InputManager : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.D))
         {
-            SaveSystemManager.Instance.DeleteSave();
+            SaveSystemManager.Instance.DeleteSaveAndResetGame();
+        }
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            AchievementUI.ToggleUI();
         }
     }
 }

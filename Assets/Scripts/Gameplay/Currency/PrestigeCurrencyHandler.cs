@@ -13,7 +13,7 @@ public class PrestigeCurrencyHandler : MonoBehaviour, IPrestigable
     [SerializeField] private bool _resetPrestigeCurrency;
     [SerializeField] private bool _resetPrestigeCurrencyToAddAfterPrestige;
 
-    public bool GeneratePrestigeCurr = false;
+    public BoolVariable GeneratePrestigeCurr;
 
     public void Start()
     {
@@ -34,7 +34,7 @@ public class PrestigeCurrencyHandler : MonoBehaviour, IPrestigable
 
     public void GeneratePrestigePoints() 
     {
-        if (!GeneratePrestigeCurr) { return; }
+        if (!GeneratePrestigeCurr.Value) { return; }
         PrestigeCurrency.ApplyChange(PrestigeCurrency.Value * PrestigeGainPercentage.Value * PrestigeGainMult.Value);
     }
 }
