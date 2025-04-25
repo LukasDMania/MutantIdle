@@ -24,7 +24,13 @@ public class SoundSO : ScriptableObject
 public enum SoundName
 {
     MainTheme,
-
+    ButtonClick_1,
+    ButtonClick_2,
+    ButtonClick_3,
+    LightFlicker,
+    AchievementUnlocked,
+    PowerUpGlow,
+    PowerUpOnClick
 }
 
 public enum SoundType

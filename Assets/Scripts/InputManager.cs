@@ -23,5 +23,9 @@ public class InputManager : MonoBehaviour
         {
             AchievementUI.ToggleUI();
         }
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            PauseMenuManager.Instance.ToggleSettingsUI();
+        }
     }
 }

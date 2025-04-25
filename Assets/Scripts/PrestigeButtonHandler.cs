@@ -17,6 +17,10 @@ public class PrestigeButtonHandler : MonoBehaviour
         }
         PrestigeConfirmationPanel.SetActive(true);
     }
+    public void PrestigeButtonPressed() 
+    {
+        AudioManager.Instance.AudioSystemSO.PlayUISound(SoundName.ButtonClick_1);
+    }
     public void CloseConfirmationPanel() 
     {
         PrestigeConfirmationPanel.SetActive(false);

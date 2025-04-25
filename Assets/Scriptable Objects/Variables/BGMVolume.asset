@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcfd157141e622f49b55bcc9711bf55f, type: 3}
-  m_Name: MainThemeSound
+  m_Script: {fileID: 11500000, guid: 9a766e7d8e44933449d318079c567da4, type: 3}
+  m_Name: BGMVolume
   m_EditorClassIdentifier: 
-  Name: 0
-  AudioClip: {fileID: 8300000, guid: 76ac91b30705e4d4d9afa5ba5f8ecf4c, type: 3}
-  Volume: 1
-  Pitch: 1
-  Loop: 1
-  PlaySource: {fileID: 0}
+  DeveloperDescription: 
+  Value: 1

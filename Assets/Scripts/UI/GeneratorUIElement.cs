@@ -46,6 +46,7 @@ public class GeneratorUIElement : MonoBehaviour, IPrestigable
 
     private void OnUpgradeClicked()
     {
+        AudioManager.Instance.AudioSystemSO.PlayUISound(SoundName.ButtonClick_1);
         if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
         {
             Debug.Log("Control key held down during upgrade.");

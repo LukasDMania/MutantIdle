@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -7,13 +8,52 @@ using UnityEngine;
 public class AudioSystemSO : ScriptableObject
 {
     public SoundSO[] Sounds;
+    private Dictionary<SoundName, SoundSO> _soundDictionary;
+    float MasterVolume;
 
+    private void OnEnable()
+    {
+        InitializeSoundDictionary();
+    }
+    private void InitializeSoundDictionary()
+    {
+        _soundDictionary = new Dictionary<SoundName, SoundSO>();
+        foreach (var sound in Sounds)
+        {
+            if (!_soundDictionary.ContainsKey(sound.Name))
+            {
+                _soundDictionary.Add(sound.Name, sound);
+            }
+            else
+            {
+                Debug.LogWarning($"Duplicate sound name detected: {sound.Name}. Only the first one will be used.");
+            }
+        }
+    }
     public void Play(SoundName name) 
     {
-        SoundSO sound = Array.Find(Sounds, sound => sound.Name == name);
-
-        sound.PlaySource.Play();
+        if (_soundDictionary.TryGetValue(name, out SoundSO sound))
+        {
+            sound.PlaySource.Play();
+        }
+        else
+        {
+            Debug.LogWarning($"Sound {name} not found.");
+        }
     }
+
+    public void PlayUISound(SoundName name)
+    {
+        if (_soundDictionary.TryGetValue(name, out SoundSO sound))
+        {
+            sound.PlaySource.PlayOneShot(sound.AudioClip, sound.Volume);
+        }
+        else
+        {
+            Debug.LogWarning($"Sound {name} not found.");
+        }
+    }
+
 
     public void StopAllAudio() 
     {
@@ -23,26 +63,37 @@ public class AudioSystemSO : ScriptableObject
         }
     }
 
-    public void SetVolume(SoundName name, float targetVolume) 
+    public void SetVolume(SoundName name, float targetVolume)
     {
-        SoundSO sound = Array.Find(Sounds, sound => sound.Name == name);
-
-        if (sound != null) { sound.PlaySource.volume = targetVolume; }
+        if (_soundDictionary.TryGetValue(name, out SoundSO sound))
+        {
+            sound.PlaySource.volume = targetVolume;
+        }
+        else
+        {
+            Debug.LogWarning($"Sound {name} not found.");
+        }
     }
+
     public void SetVolumeOfType(SoundType type, float targetVolume)
     {
         foreach (var sound in Sounds)
         {
             if (!(sound.Type == type)) { continue; }
-            sound.PlaySource.volume = targetVolume;
+            sound.PlaySource.volume = targetVolume * MasterVolume;
         }
     }
 
-    public void SetPitch(SoundName name, float targetPitch) 
+    public void SetPitch(SoundName name, float targetPitch)
     {
-        SoundSO sound = Array.Find(Sounds, sound => sound.Name == name);
-
-        sound.PlaySource.pitch = targetPitch;
+        if (_soundDictionary.TryGetValue(name, out SoundSO sound))
+        {
+            sound.PlaySource.pitch = targetPitch;
+        }
+        else
+        {
+            Debug.LogWarning($"Sound {name} not found.");
+        }
     }
     public void SetPitchOfType(SoundType type, float targetPitch)
     {
@@ -54,19 +105,27 @@ public class AudioSystemSO : ScriptableObject
     }
     public void PlayWithPitchVariation(SoundName name, float pitchVariation = 0.1f)
     {
-        SoundSO sound = Array.Find(Sounds, s => s.Name == name);
-        if (sound != null)
+        if (_soundDictionary.TryGetValue(name, out SoundSO sound))
         {
             sound.PlaySource.pitch = 1f + UnityEngine.Random.Range(-pitchVariation, pitchVariation);
             sound.PlaySource.Play();
+        }
+        else
+        {
+            Debug.LogWarning($"Sound {name} not found.");
         }
     }
 
     public void PauseSound(SoundName name)
     {
-        SoundSO sound = Array.Find(Sounds, s => s.Name == name);
-
-        if (sound != null) { sound.PlaySource.Pause(); }
+        if (_soundDictionary.TryGetValue(name, out SoundSO sound))
+        {
+            sound.PlaySource.Pause();
+        }
+        else
+        {
+            Debug.LogWarning($"Sound {name} not found.");
+        }
     }
     public void PauseSoundsOfType(SoundType type)
     {
@@ -79,9 +138,14 @@ public class AudioSystemSO : ScriptableObject
 
     public void ResumeSound(SoundName name)
     {
-        SoundSO sound = Array.Find(Sounds, s => s.Name == name);
-
-        if (sound != null) { sound.PlaySource.UnPause(); }
+        if (_soundDictionary.TryGetValue(name, out SoundSO sound))
+        {
+            sound.PlaySource.UnPause();
+        }
+        else
+        {
+            Debug.LogWarning($"Sound {name} not found.");
+        }
     }
     public void ResumeSoundsOfType(SoundType type)
     {
@@ -94,9 +158,10 @@ public class AudioSystemSO : ScriptableObject
 
     public void SetMasterVolume(float masterVolume)
     {
+        MasterVolume = masterVolume;
         foreach (var sound in Sounds)
         {
-            sound.PlaySource.volume = masterVolume * sound.Volume;
+            sound.PlaySource.volume = MasterVolume * sound.Volume;
         }
     }
 }

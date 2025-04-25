@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -75,7 +76,7 @@ public class Generator : MonoBehaviour, ITickable, IPrestigable
     public void UpgradeGenerator() 
     {
         if (!CanUpgrade()) { return; }
-
+        //AudioManager.Instance.AudioSystemSO.Play(SoundName.ButtonClick_1);
         _playerCurrency.ApplyChange(-CurrentUpgradeCost);
         GeneratorLevel++;
         TotalGeneratorLevel.ApplyChange(1);
@@ -194,8 +195,23 @@ public class Generator : MonoBehaviour, ITickable, IPrestigable
         CalculateUpgradeCost();
         CalculatePercentageToNextMultiplier();
         CalculateTotalProduction();
+        UpdateSpriteUponLoad();
+    }
+    private void UpdateSpriteUponLoad() 
+    {
+        if (GeneratorLevel >= 1)
+        {
+            if (CharacterVisualManager == null) { CharacterVisualManager = FindFirstObjectByType<CharacterVisualManager>(); }
+            CharacterVisualManager.AddBodyPart(this, BodyPartDataSO);
+        }
+        if (GeneratorLevel >= 2)
+        {
+            CharacterVisualManager.UpdateBodyPartSprite(this, BodyPartDataSO);
+        }
     }
 }
+
+
 [Serializable]
 public class GeneratorSaveData
 {

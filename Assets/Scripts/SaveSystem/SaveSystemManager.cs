@@ -83,6 +83,7 @@ public class SaveSystemManager : MonoBehaviour
         PrestigeGainMult.SetValue(data.PrestigeGainMult);
         PrestigeGainPercentage.SetValue(data.PrestigeGainPercentage);
         GeneratePrestigePoints.SetValue(data.GenPP);
+        PauseMenuManager.Instance.Load(data.AudioVolumeSaveData);
 
         GlobalMultiplierHandler h = FindFirstObjectByType<GlobalMultiplierHandler>();
         h.Load(data.GlobalMultiplierSaveData);
@@ -122,6 +123,7 @@ public class SaveSystemManager : MonoBehaviour
         saveData.PrestigeGainMult = PrestigeGainMult.Value;
         saveData.PrestigeGainPercentage = PrestigeGainPercentage.Value;
         saveData.GenPP = GeneratePrestigePoints.Value;
+        saveData.AudioVolumeSaveData = PauseMenuManager.Instance.Save();
 
         GlobalMultiplierHandler h = FindFirstObjectByType<GlobalMultiplierHandler>();
         saveData.GlobalMultiplierSaveData = h.Save();
@@ -193,6 +195,15 @@ public class SaveSystemManager : MonoBehaviour
         PlayerPrefs.SetString("LastPlayed", timeNow);
         PlayerPrefs.Save();
         Save();
+    }
+
+    public void QuitGame() 
+    {
+        string timeNow = DateTime.Now.ToBinary().ToString();
+        PlayerPrefs.SetString("LastPlayed", timeNow);
+        PlayerPrefs.Save();
+        Save();
+        Application.Quit();
     }
 
     public void ResetVarsForPrestige() 

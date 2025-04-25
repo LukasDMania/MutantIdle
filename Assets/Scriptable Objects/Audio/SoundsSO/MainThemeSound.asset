@@ -9,9 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb4bcc3070dd72942b8ba8963cf6c81a, type: 3}
-  m_Name: AudioSystem
+  m_Script: {fileID: 11500000, guid: bcfd157141e622f49b55bcc9711bf55f, type: 3}
+  m_Name: MainThemeSound
   m_EditorClassIdentifier: 
-  Sounds:
-  - {fileID: 11400000, guid: d444c4ef355d3c349b1144c0133eecbd, type: 2}
-  - {fileID: 11400000, guid: aeb9970f625363c41bda4c19ed319a09, type: 2}
+  Name: 0
+  Type: 1
+  AudioClip: {fileID: 8300000, guid: 76ac91b30705e4d4d9afa5ba5f8ecf4c, type: 3}
+  Volume: 1
+  Pitch: 1
+  Loop: 1
+  PlaySource: {fileID: 0}
