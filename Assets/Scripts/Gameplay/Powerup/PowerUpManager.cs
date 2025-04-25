@@ -34,13 +34,13 @@ public class PowerUpManager : MonoBehaviour
 
             // Extend Here
         };
+        RandomizePowerUpInterval();
     }
     public void Update()
     {
         _timer += Time.deltaTime;
         if (_timer > _powerupInterval)
         {
-            SpawnPowerUpImage();
             _timer = 0;
             RandomizePowerUpInterval();
         }
@@ -48,7 +48,7 @@ public class PowerUpManager : MonoBehaviour
 
     private void RandomizePowerUpInterval()
     {
-        _powerupInterval = UnityEngine.Random.Range(90f,600f);
+        _powerupInterval = UnityEngine.Random.Range(120f,600f);
     }
 
     private void SpawnPowerUpImage()
@@ -79,6 +79,7 @@ public class PowerUpManager : MonoBehaviour
     public void ActivatePowerUp()
     {
         Debug.Log("Power-up clicked!");
+        AudioManager.Instance.AudioSystemSO.PlayUISound(SoundName.PowerUpOnClick);
         AmountOfPowerUpsClciked.ApplyChange(1);
         AchievementManager.Instance.TryUnlockingAchievements();
 

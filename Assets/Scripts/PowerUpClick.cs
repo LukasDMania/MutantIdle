@@ -19,12 +19,17 @@ public class PowerUpClick : MonoBehaviour
         {
             gameObject.AddComponent<PolygonCollider2D>();
         }
+        AudioManager.Instance.AudioSystemSO.PlayUISound(SoundName.PowerUpGlow);
         Destroy(gameObject, 10f);
     }
 
     private void OnMouseDown()
     {
         Manager.ActivatePowerUp();
+    }
+    private void OnDestroy()
+    {
+        AudioManager.Instance.AudioSystemSO.StopSound(SoundName.PowerUpGlow);
     }
 }
 

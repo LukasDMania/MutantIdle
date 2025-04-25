@@ -27,10 +27,14 @@ public enum SoundName
     ButtonClick_1,
     ButtonClick_2,
     ButtonClick_3,
-    LightFlicker,
+    LightFlicker1,
+    LightFlicker2,
+    LightFlicker3,
     AchievementUnlocked,
     PowerUpGlow,
-    PowerUpOnClick
+    PowerUpOnClick,
+    PrestigeSound,
+    BodyPartAttached,
 }
 
 public enum SoundType

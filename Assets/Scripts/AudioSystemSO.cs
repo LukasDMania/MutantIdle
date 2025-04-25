@@ -74,6 +74,17 @@ public class AudioSystemSO : ScriptableObject
             Debug.LogWarning($"Sound {name} not found.");
         }
     }
+    public void StopSound(SoundName name)
+    {
+        if (_soundDictionary.TryGetValue(name, out SoundSO sound))
+        {
+            sound.PlaySource.Stop();
+        }
+        else
+        {
+            Debug.LogWarning($"Sound {name} not found.");
+        }
+    }
 
     public void SetVolumeOfType(SoundType type, float targetVolume)
     {

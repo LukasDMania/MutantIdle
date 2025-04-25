@@ -22,8 +22,13 @@ public class LightFlicker : Singleton<LightFlicker>
     private float alphaTarget = 0f;
     private float currentLerpTime = 0f;
     private float lerpDuration = 0.8f;
-    private float flickerCooldownTimer = 0f;
-    private float nextFlickerCooldown = 0f;
+    public float flickerCooldownTimer = 0f;
+    public float nextFlickerCooldown = 0f;
+
+    private int currentSoundPlays;
+    private int maxSoundPlays;
+    private float audioIntervalTime;
+    private float nextAudioTime;
 
 
     void Start()
@@ -37,7 +42,7 @@ public class LightFlicker : Singleton<LightFlicker>
         overlayColor.a = 0;
         blackOverlay.color = overlayColor;
 
-        nextFlickerCooldown = Random.Range(120f, 1200f);
+        nextFlickerCooldown = Random.Range(120f, 1500f);
     }
 
     void Update()
@@ -73,7 +78,7 @@ public class LightFlicker : Singleton<LightFlicker>
         if (flickerCooldownTimer >= nextFlickerCooldown)
         {
             flickerCooldownTimer = 0f;
-            nextFlickerCooldown = Random.Range(120f, 1200f);
+            nextFlickerCooldown = Random.Range(120f, 1500f);
             StartFlicker();
         }
     }
@@ -83,7 +88,7 @@ public class LightFlicker : Singleton<LightFlicker>
         //Trigger flicekr sound
         isFlickering = true;
         flickerCount = Random.Range(4, 12);
-        flickerDuration = Random.Range(4, 8);
+        flickerDuration = Random.Range(2, 5.5f);
         maxAlpha = Random.Range(0.8f, 1.1f);
         flickerTimer = (duration > 0) ? duration : flickerDuration;
         currentFlickerCount = 0;
@@ -92,12 +97,41 @@ public class LightFlicker : Singleton<LightFlicker>
         overlayColor.a = minAlpha;
         blackOverlay.color = overlayColor;
 
+        maxSoundPlays = Mathf.Clamp(Mathf.CeilToInt(flickerTimer / 2f), 1, 3);
+        currentSoundPlays = 0;
+        audioIntervalTime = flickerTimer / maxSoundPlays;
+        nextAudioTime = Time.time + (audioIntervalTime);
+        PlayFlickerSound();
+
         TriggerNextFlicker();
+    }
+    private void PlayFlickerSound() 
+    {
+        switch (Random.Range(0, 2)) 
+        {
+            case 0:
+                AudioManager.Instance.AudioSystemSO.PlayUISound(SoundName.LightFlicker1);
+                break;
+            case 1:
+                AudioManager.Instance.AudioSystemSO.PlayUISound(SoundName.LightFlicker2);
+                break;
+            case 2:
+                AudioManager.Instance.AudioSystemSO.PlayUISound(SoundName.LightFlicker3);
+                break;
+        }
     }
 
     private void TriggerNextFlicker()
     {
         currentFlickerCount++;
+
+        if (currentSoundPlays < maxSoundPlays && Time.time >= nextAudioTime)
+        {
+            PlayFlickerSound();
+            currentSoundPlays++;
+            nextAudioTime = Time.time + audioIntervalTime; // Schedule next audio
+        }
+
 
         float baseDelay = flickerDuration / (flickerCount + 2);
         float randomVariation = baseDelay * 0.4f;

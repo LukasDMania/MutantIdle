@@ -20,6 +20,7 @@ public class AchievementManager : Singleton<AchievementManager>
         {
             if (!achievement.AchievementUnlocked && achievement.RequirementFullFilled())
             {
+                AudioManager.Instance.AudioSystemSO.PlayUISound(SoundName.AchievementUnlocked);
                 achievement.AchievementUnlocked = true;
                 achievementsWereUnlocked = true;
                 AchievementTextDisplayUI.DisplayAchievementText(achievement.AchievementRewardText);

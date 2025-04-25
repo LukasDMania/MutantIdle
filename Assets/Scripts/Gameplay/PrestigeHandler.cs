@@ -9,6 +9,7 @@ public class PrestigeHandler : MonoBehaviour
     public DoubleVariable TotalPrestiges;
     public void Prestige() 
     {
+        AudioManager.Instance.AudioSystemSO.PlayUISound(SoundName.PrestigeSound);
         TotalPrestiges.ApplyChange(1);
         OnPrestigeEvent?.Invoke();
         OnPoststigeEvent?.Invoke();

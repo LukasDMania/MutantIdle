@@ -41,7 +41,7 @@ public class CharacterVisualManager : MonoBehaviour, IPrestigable
             .SetEase(GetRandomEase())
             .OnComplete(() =>
             {
-                // Play sound effect on completion
+                AudioManager.Instance.AudioSystemSO.PlayUISound(SoundName.BodyPartAttached);
                 // Particles
             });
 

@@ -19,7 +19,7 @@ public class AudioManager : Singleton<AudioManager>
             sound.PlaySource.loop = sound.Loop;
         }
 
-        AudioSystemSO.Play(SoundName.MainTheme);
+        FadeCoroutine(SoundName.MainTheme, 0, 1, 5);
     }
 
     public void FadeIn(SoundName name, float duration)

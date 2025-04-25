@@ -15,3 +15,11 @@ MonoBehaviour:
   Sounds:
   - {fileID: 11400000, guid: d444c4ef355d3c349b1144c0133eecbd, type: 2}
   - {fileID: 11400000, guid: aeb9970f625363c41bda4c19ed319a09, type: 2}
+  - {fileID: 11400000, guid: 18aea4e4d6beb324c9ff954f1353fe00, type: 2}
+  - {fileID: 11400000, guid: 6dbd195cd91f3ae4e88dc78041fc9440, type: 2}
+  - {fileID: 11400000, guid: e535f8fb3d310764e81acf2b2202153a, type: 2}
+  - {fileID: 11400000, guid: 7a7f7ec85abe53549aa9e2aa8b912b89, type: 2}
+  - {fileID: 11400000, guid: 15d3570a8add1b244a3d1af846f30a9b, type: 2}
+  - {fileID: 11400000, guid: 607f861a9f0b6f1479f7fb7ce502193b, type: 2}
+  - {fileID: 11400000, guid: 4bc45cd8537434e41adaffa823319325, type: 2}
+  - {fileID: 11400000, guid: 77abbf37ac36f494b95141ef5963472c, type: 2}
