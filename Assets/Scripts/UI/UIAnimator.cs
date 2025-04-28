@@ -8,11 +8,15 @@ public class UIAnimator : MonoBehaviour
     public Vector2 visiblePosition; // Position where the panel is visible
     public float duration = 0.5f; // Animation duration
 
+    public Texture2D CursorTexture;
+    public Vector2 hotspot;
+
     private bool isPanelVisible = true;
 
     // Function to move the panel in and out
     private void Start()
     {
+        Cursor.SetCursor(CursorTexture, hotspot, CursorMode.Auto);
     }
     public void TogglePanel()
     {

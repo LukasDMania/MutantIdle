@@ -35,6 +35,10 @@ public class PauseMenuManager : Singleton<PauseMenuManager>
         PauseMenuContainer.SetActive(false);
         PauseMenuIsOpen = false;
     }
+    public void PlayButtonUISound() 
+    {
+        AudioManager.Instance.AudioSystemSO.PlayUISound(SoundName.ButtonClick_1);
+    }
 
     public void ToggleSettingsUI()
     {

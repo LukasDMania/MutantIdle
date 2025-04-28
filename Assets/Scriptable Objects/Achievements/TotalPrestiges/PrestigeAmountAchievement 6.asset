@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AchievementName: Prestige Legend
   AchievementId: Prestige_Amount_6
-  AchievementDescription: Prestige 250 times
+  AchievementDescription: Prestige 100 times
   AchievementRewardText: 'Achievement unlocked: Evo Points Gain Multiplier + 25'
   OnAchievementUnlocked:
     m_PersistentCalls:
@@ -34,5 +34,5 @@ MonoBehaviour:
   AchievementUnlocked: 0
   TotalTimesPrestiged: {fileID: 11400000, guid: 4ff3578a9a1a77f41ac2e4e637d0f920, type: 2}
   PrestigeMultiplierGain: {fileID: 11400000, guid: b0a5027b63be91847b98707254bcffc2, type: 2}
-  RequiredPrestiges: 250
+  RequiredPrestiges: 100
   BuffAmount: 25

@@ -1,9 +1,7 @@
 using System;
 using System.IO;
-using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 
 public class SaveSystemManager : MonoBehaviour
 {
@@ -22,15 +20,20 @@ public class SaveSystemManager : MonoBehaviour
     public DoubleVariable PrestigeGainMult;
     public DoubleVariable PrestigeGainPercentage;
     public BoolVariable GeneratePrestigePoints;
+    public FloatVariable TotalPlayTime;
 
     public UnityEvent OnGameSaved;
     public UnityEvent OnGameLoaded;
     public UnityEvent OnGameReset;
 
+    private float _currentSaveIntervalValue = 0;
+    private float _saveInterval = 30;
+
     private string _savePath => Path.Combine(Application.persistentDataPath, "savedata.json");
 
     private void Awake()
     {
+        Application.runInBackground = true;
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -47,10 +50,26 @@ public class SaveSystemManager : MonoBehaviour
 
             Debug.Log("Time away: " + afkTime.TotalSeconds + " seconds");
         }
+        else
+        {
+            
+        }
     }
     private void Start()
     {
         Load();
+    }
+
+    private void Update()
+    {
+        _currentSaveIntervalValue += Time.deltaTime;
+        if (_currentSaveIntervalValue > _saveInterval)
+        {
+            Save();
+            _currentSaveIntervalValue = 0;
+        }
+
+        TotalPlayTime.ApplyChange(Time.deltaTime);
     }
 
     public void Save()
@@ -84,6 +103,7 @@ public class SaveSystemManager : MonoBehaviour
         PrestigeGainPercentage.SetValue(data.PrestigeGainPercentage);
         GeneratePrestigePoints.SetValue(data.GenPP);
         PauseMenuManager.Instance.Load(data.AudioVolumeSaveData);
+        TotalPlayTime.SetValue(data.TotalTimePlayed);
 
         GlobalMultiplierHandler h = FindFirstObjectByType<GlobalMultiplierHandler>();
         h.Load(data.GlobalMultiplierSaveData);
@@ -124,6 +144,7 @@ public class SaveSystemManager : MonoBehaviour
         saveData.PrestigeGainPercentage = PrestigeGainPercentage.Value;
         saveData.GenPP = GeneratePrestigePoints.Value;
         saveData.AudioVolumeSaveData = PauseMenuManager.Instance.Save();
+        saveData.TotalTimePlayed = TotalPlayTime.Value;
 
         GlobalMultiplierHandler h = FindFirstObjectByType<GlobalMultiplierHandler>();
         saveData.GlobalMultiplierSaveData = h.Save();
@@ -172,6 +193,13 @@ public class SaveSystemManager : MonoBehaviour
             generator.ResetGenerator();
             Debug.Log(generator.GeneratorLevel);
         }
+        CharacterVisualManager bodyparts = FindAnyObjectByType<CharacterVisualManager>();
+        GlobalMultiplierHandler globalMultiplierHandler = FindAnyObjectByType<GlobalMultiplierHandler>();
+        globalMultiplierHandler.ResetMultiplierSys();
+
+        bodyparts.PrestigeResetCharacterVisualManager();
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
     }
     private void ResetMainVars()
     {
@@ -187,6 +215,7 @@ public class SaveSystemManager : MonoBehaviour
         PrestigeGainMult.SetValue(1);
         PrestigeGainPercentage.SetValue(0);
         GeneratePrestigePoints.SetValue(false);
+        TotalPlayTime.SetValue(0);
     }
 
     private void OnApplicationQuit()

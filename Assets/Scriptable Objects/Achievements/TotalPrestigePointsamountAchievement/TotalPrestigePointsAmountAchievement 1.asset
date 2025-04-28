@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AchievementName: Total Prestige Points
   AchievementId: TotalPP_1
-  AchievementDescription: Reach a total of 100 EVO points
+  AchievementDescription: Reach a total of 50 EVO points
   AchievementRewardText: 'Achievement unlocked: EVO Point auto-generation + 0.05%'
   OnAchievementUnlocked:
     m_PersistentCalls:
@@ -22,5 +22,5 @@ MonoBehaviour:
   AchievementUnlocked: 0
   PrestigeCurrency: {fileID: 11400000, guid: 386d17f7315ff5641bf64df49f10665c, type: 2}
   PrestigeGenerationPercentage: {fileID: 11400000, guid: 1abf6a6a5677a1147a9f5c666dcbb796, type: 2}
-  RequiredPrestigePoints: 100
+  RequiredPrestigePoints: 50
   BuffToPercentageOfPrestigePointsGenerated: 0.0005

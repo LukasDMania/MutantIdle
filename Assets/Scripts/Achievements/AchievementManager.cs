@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine.Events;
 
 public class AchievementManager : Singleton<AchievementManager>
 {
@@ -9,6 +9,8 @@ public class AchievementManager : Singleton<AchievementManager>
 
     public AchievementTextDisplayUI AchievementTextDisplayUI;
     public DoubleVariable TotalAchievementsUnlocked;
+
+    public UnityEvent OnAchievementUnlocked;
 
     private void Start()
     {
@@ -26,6 +28,7 @@ public class AchievementManager : Singleton<AchievementManager>
                 AchievementTextDisplayUI.DisplayAchievementText(achievement.AchievementRewardText);
                 achievement.ApplyAchievement();
                 TotalAchievementsUnlocked.ApplyChange(1);
+                OnAchievementUnlocked.Invoke();
             }
         }
         

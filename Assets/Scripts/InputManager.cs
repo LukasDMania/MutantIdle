@@ -3,25 +3,29 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     public AchievementContainerUIScript AchievementUI;
+    public StatsScreenContainerUI StatsUI;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        
+        #if UNITY_EDITOR
+        if (Input.GetKeyUp(KeyCode.D))
         {
-            SaveSystemManager.Instance.Save();
+            SaveSystemManager.Instance.DeleteSaveAndResetGame();
         }
         if (Input.GetKeyUp(KeyCode.L))
         {
             SaveSystemManager.Instance.Load();
         }
-        if (Input.GetKeyUp(KeyCode.D))
-        {
-            SaveSystemManager.Instance.DeleteSaveAndResetGame();
-        }
+        #endif
         if (Input.GetKeyUp(KeyCode.A))
         {
             AchievementUI.ToggleUI();
+        }
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            StatsUI.ToggleUI();
         }
         if (Input.GetKeyUp(KeyCode.Escape))
         {

@@ -55,16 +55,19 @@ public class GeneratorsHandler : MonoBehaviour, IPrestigable
     }
     public void CalculateAfkCurrencyGenerated() 
     {
-        if (_generators == null) { _generators = new List<Generator>(GetComponentsInChildren<Generator>()); }
-        Debug.Log("CALCULATEAFKCURR _TotalCurrencyGen" + _TotalCurrencyGeneration.Value);
-        CalculateTotalGeneratorProduction();
-        Debug.Log("CALCULATEAFKCURR _TotalCurrencyGen POST" + _TotalCurrencyGeneration.Value);
-        double afkGeneration = AfkSeconds.Value / TickInterval.Value * _TotalCurrencyGeneration.Value;
-        Debug.Log(afkGeneration);
-        AfkGenerationPostCalculation.SetValue(afkGeneration);
-        OnAfkGenerationCalculated?.Invoke();
-        Debug.Log(PlayerCurrency.Value);
-        PlayerCurrency.ApplyChange(afkGeneration);
-        Debug.Log(PlayerCurrency.Value);
+        if (PlayerPrefs.HasKey("LastPlayed"))
+        {
+            if (_generators == null) { _generators = new List<Generator>(GetComponentsInChildren<Generator>()); }
+            Debug.Log("CALCULATEAFKCURR _TotalCurrencyGen" + _TotalCurrencyGeneration.Value);
+            CalculateTotalGeneratorProduction();
+            Debug.Log("CALCULATEAFKCURR _TotalCurrencyGen POST" + _TotalCurrencyGeneration.Value);
+            double afkGeneration = AfkSeconds.Value / TickInterval.Value * _TotalCurrencyGeneration.Value;
+            Debug.Log(afkGeneration);
+            AfkGenerationPostCalculation.SetValue(afkGeneration);
+            OnAfkGenerationCalculated?.Invoke();
+            Debug.Log(PlayerCurrency.Value);
+            PlayerCurrency.ApplyChange(afkGeneration);
+            Debug.Log(PlayerCurrency.Value);
+        }
     }
 }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AchievementName: Power Ups Caught 3
   AchievementId: Power Ups Caught 3
-  AchievementDescription: Catch 25 Total Power Ups
+  AchievementDescription: Catch 20 Total Power Ups
   AchievementRewardText: 'Achievement unlocked: Tick Interval -0.025'
   OnAchievementUnlocked:
     m_PersistentCalls:
@@ -22,5 +22,5 @@ MonoBehaviour:
   AchievementUnlocked: 0
   TotalPowerUpsCaught: {fileID: 11400000, guid: 79d1a53f7d651fe4a9e21b89644ceeed, type: 2}
   TickInterval: {fileID: 11400000, guid: 19014aad2cd6e0b4dac2be84b98a69dc, type: 2}
-  RequirementAmount: 25
+  RequirementAmount: 20
   BuffAmount: -0.025

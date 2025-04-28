@@ -41,6 +41,7 @@ public class PowerUpManager : MonoBehaviour
         _timer += Time.deltaTime;
         if (_timer > _powerupInterval)
         {
+            SpawnPowerUpImage();
             _timer = 0;
             RandomizePowerUpInterval();
         }
@@ -48,7 +49,7 @@ public class PowerUpManager : MonoBehaviour
 
     private void RandomizePowerUpInterval()
     {
-        _powerupInterval = UnityEngine.Random.Range(120f,600f);
+        _powerupInterval = UnityEngine.Random.Range(90f,350f);
     }
 
     private void SpawnPowerUpImage()

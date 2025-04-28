@@ -697,6 +697,7 @@ GameObject:
   - component: {fileID: -4386697942056550514}
   - component: {fileID: 1386273003652195090}
   - component: {fileID: 1681994314849788078}
+  - component: {fileID: 6461885403832370211}
   m_Layer: 5
   m_Name: GeneratorPanel
   m_TagString: Untagged
@@ -854,6 +855,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameEvent: {fileID: 11400000, guid: cb16737e2a47fc04099c7d3e7ca256c6, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2224749706348379787}
+        m_TargetAssemblyTypeName: GeneratorUIElement, Assembly-CSharp
+        m_MethodName: UpdateUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6461885403832370211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7773358492032656571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 975e335bcc8d0de47b6f4a471e9e685b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameEvent: {fileID: 11400000, guid: d9756e7c1a1c9cf46a6cf7569a0d4e30, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
@@ -1244,6 +1273,18 @@ PrefabInstance:
     - target: {fileID: 3748231519305136477, guid: 3c7c6f8154713ea45b5db2a37e1634af, type: 3}
       propertyPath: m_Name
       value: LevelProgress_Slider
+      objectReference: {fileID: 0}
+    - target: {fileID: 7629827637178007736, guid: 3c7c6f8154713ea45b5db2a37e1634af, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703968959664001313, guid: 3c7c6f8154713ea45b5db2a37e1634af, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703968959664001313, guid: 3c7c6f8154713ea45b5db2a37e1634af, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -20,6 +20,8 @@ public class MultiplierSystem : MonoBehaviour, IPrestigable
         var x = activeMultipliers.Values
                 .Select(m => m.MultiplierId)
                 .ToArray();
+        Debug.Log("UNLCOKED GEN MULTIPLIERS TO SAVE" + x.ToString());
+
         return x;
     }
 

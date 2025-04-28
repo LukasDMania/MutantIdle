@@ -2,10 +2,15 @@ using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class AudioManager : Singleton<AudioManager>
 {
     public AudioSystemSO AudioSystemSO;
+
+    public FloatVariable MasterVolume;
+    public FloatVariable SFXVolume;
+    public FloatVariable BGMVolume;
 
     private void Start()
     {
@@ -18,8 +23,11 @@ public class AudioManager : Singleton<AudioManager>
             sound.PlaySource.pitch = sound.Pitch;
             sound.PlaySource.loop = sound.Loop;
         }
-
-        FadeCoroutine(SoundName.MainTheme, 0, 1, 5);
+        AudioSystemSO.MasterVolume = MasterVolume.Value;
+        AudioSystemSO.SFXVolume = SFXVolume.Value;
+        AudioSystemSO.BGMVolume = BGMVolume.Value;
+        AudioSystemSO.Play(SoundName.MainTheme);
+        AudioManager.Instance.AudioSystemSO.SetMasterVolume(MasterVolume.Value);
     }
 
     public void FadeIn(SoundName name, float duration)

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 0
   Type: 1
-  AudioClip: {fileID: 8300000, guid: 76ac91b30705e4d4d9afa5ba5f8ecf4c, type: 3}
+  AudioClip: {fileID: 8300000, guid: 655ce017804b5894bbdb671852a84408, type: 3}
   Volume: 1
   Pitch: 1
   Loop: 1

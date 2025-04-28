@@ -9,8 +9,10 @@ public class AudioSystemSO : ScriptableObject
 {
     public SoundSO[] Sounds;
     private Dictionary<SoundName, SoundSO> _soundDictionary;
-    float MasterVolume;
 
+    public float MasterVolume;
+    public float SFXVolume;
+    public float BGMVolume;
     private void OnEnable()
     {
         InitializeSoundDictionary();
@@ -174,5 +176,7 @@ public class AudioSystemSO : ScriptableObject
         {
             sound.PlaySource.volume = MasterVolume * sound.Volume;
         }
+        SetVolumeOfType(SoundType.SFX, SFXVolume);
+        SetVolumeOfType(SoundType.Music, BGMVolume);
     }
 }

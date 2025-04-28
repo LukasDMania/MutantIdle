@@ -10,7 +10,11 @@ public class AfkGenerationUI : MonoBehaviour
     private bool hidden = true;
     void Start()
     {
-        
+        Debug.Log("LAST PLAYED KEY EXISTS AFKUI: " + PlayerPrefs.HasKey("LastPlayed"));
+        if (PlayerPrefs.HasKey("LastPlayed"))
+        {
+            ShowAfkGainContainer();
+        }
     }
     private void Update()
     {

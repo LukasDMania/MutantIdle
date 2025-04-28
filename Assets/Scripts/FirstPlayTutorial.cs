@@ -35,16 +35,15 @@ public class FirstPlayTutorial : MonoBehaviour
     {
         data = AddTutorialData();
         _tutorialRectTransform = _tutorialContainer.GetComponent<RectTransform>();
-        if (!PlayerPrefs.HasKey(_hasPlayedKey))
+        Debug.Log("LAST PLAYED KEY EXISTS: " + PlayerPrefs.HasKey("LastPlayed"));
+        if (!PlayerPrefs.HasKey("LastPlayed"))
         {
+            SaveSystemManager.Instance.DeleteSaveAndResetGame();
             if (_tutorialContainer != null)
             {
                 _tutorialContainer.SetActive(true);
                 ContinueTutorial();
             }
-
-            PlayerPrefs.SetInt(_hasPlayedKey, 1);
-            PlayerPrefs.Save();
         }
         else
         {
@@ -62,10 +61,19 @@ public class FirstPlayTutorial : MonoBehaviour
         x.Add(new TutorialData(new Vector2(0, 40), "The goal is to gather DNA to complete the monster science experiment", 0f));
         x.Add(new TutorialData(new Vector2(555, 445), "Here you mutate the experiment, body parts will generate DNA automatically", 2f));
         x.Add(new TutorialData(new Vector2(555, 445), "You can scroll down to see later body parts or click and drag with the mouse", 0f));
+        x.Add(new TutorialData(new Vector2(555, 445), "CTRL + Click will upgrade the maximum times you can afford", 0f));
         x.Add(new TutorialData(new Vector2(555, 445), "Click anywhere along the side of the panel to close or open it again", 0f));
         x.Add(new TutorialData(new Vector2(-435, 435), "This top label displays your DNA. This is needed to buy and upgrade body parts", 2f));
         x.Add(new TutorialData(new Vector2(-435, 330), "This is the total amount of DNA you're generating per tick", 1f));
         x.Add(new TutorialData(new Vector2(-435, 230), "This says how many seconds per tick. Every tick all body parts will generate their DNA", 1f));
+
+        x.Add(new TutorialData(new Vector2(-435, 120), "In this panel on click you will see various useful stats needed to unlock Achievements", 1f));
+        x.Add(new TutorialData(new Vector2(-435, 59), "In this panel on click you will see all the achievements, grey means locked, white unlocked", 1f));
+        x.Add(new TutorialData(new Vector2(-435, 59), "Achievements play a crucial role in the progression system (Tip: Aim for 50 EVO points)", 1f));
+        x.Add(new TutorialData(new Vector2(-435, -6), "This button will prestige you, resetting all your progress and giving you the saved EVO points", 1f));
+        x.Add(new TutorialData(new Vector2(-435, -6), "Prestiging is possible if you have at least 1 level of the 6th Body Part", 1f));
+
+
         x.Add(new TutorialData(new Vector2(-688, 293), "Global Multiplier. This multiplication gets added to any DNA generating source", 2f));
         x.Add(new TutorialData(new Vector2(-692, 202), "This is your evolution overview. Evolving will reset all your progress except for your evolution points...", 1f));
         x.Add(new TutorialData(new Vector2(-692, 202), "In return you get the Evolution points saved up under the top label \"Evo Points On Prestige\"", 0f));

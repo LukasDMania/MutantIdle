@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AchievementName: Total Generator Level
   AchievementId: TotalGenLvl_7
-  AchievementDescription: Reach a combined 10000 Generator Levels
+  AchievementDescription: Reach a combined 5000 Generator Levels
   AchievementRewardText: 'Achievement unlocked: Generators Multiplier * 32'
   OnAchievementUnlocked:
     m_PersistentCalls:
       m_Calls: []
   AchievementUnlocked: 0
   TotalGeneratorLevel: {fileID: 11400000, guid: f2f4e6bfa571dca45ab99d1b8852021f, type: 2}
-  LevelRequirement: 10000
+  LevelRequirement: 5000
   UpgradeIdToApply: 10

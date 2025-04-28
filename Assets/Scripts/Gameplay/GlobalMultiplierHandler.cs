@@ -32,11 +32,13 @@ public class GlobalMultiplierHandler : MonoBehaviour, IPrestigable
     {
         if (PrestigeCurrency.Value > 0)
         {
+            Debug.Log(_multiplierSystem.CalculateTotalMultiplier());
             GlobalMultiplier.SetValue(_multiplierSystem.CalculateTotalMultiplier() + (PrestigeCurrency.Value / 10));
 
         }
         else
         {
+            Debug.Log(_multiplierSystem.CalculateTotalMultiplier());
             GlobalMultiplier.SetValue(_multiplierSystem.CalculateTotalMultiplier());
         }
     }
@@ -51,6 +53,8 @@ public class GlobalMultiplierHandler : MonoBehaviour, IPrestigable
         _multiplierSystem.PrestigeReset();
         CalculateGlobalMultiplier();
     }
+
+    public void ResetMultiplierSys() { _multiplierSystem.ResetMultiplierSystem(); }
 
     public GlobalMultiplierSaveData Save()
     {

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c4d8f01f2b0d624587754065921cc29, type: 3}
   m_Name: BodyPartDataSO_5
   m_EditorClassIdentifier: 
-  BodyPartName: BodyPart_3
+  BodyPartName: BodyPart_5
   SpriteUpgrades:
   - levelRequired: 0
     sprite: {fileID: 21300000, guid: c5edf788bccb7cb40bfda1f6dbc59c62, type: 3}

@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c4d8f01f2b0d624587754065921cc29, type: 3}
   m_Name: BodyPartDataSO_15
   m_EditorClassIdentifier: 
-  BodyPartName: BodyPart_3
+  BodyPartName: BodyPart_15
   SpriteUpgrades:
   - levelRequired: 0
-    sprite: {fileID: -181485876952098698, guid: 49bb3cb727480c4469cd1bb7165087d7, type: 3}
+    sprite: {fileID: -2248303341484881640, guid: de66c4748035e41468dc5a68767d0c74, type: 3}
   - levelRequired: 25
-    sprite: {fileID: -7590223445924054693, guid: 6ef0dc60821028944a6e5dd6e53cc50a, type: 3}
+    sprite: {fileID: 6206713002721161125, guid: 97ab21e8a4b6dff4f95dfdd90230603a, type: 3}
   - levelRequired: 50
-    sprite: {fileID: 6802340751514008870, guid: 6a29b99bb3f39964786433a12a959aaf, type: 3}
+    sprite: {fileID: 21300000, guid: 26aaf8012f0156d4cace0d45e794d34a, type: 3}
   - levelRequired: 100
     sprite: {fileID: 1163744741977260710, guid: ec000eb44d2fc194f9218f0b6141e823, type: 3}
-  AttachmentPoint: {x: -0.14, y: 2.48}
+  AttachmentPoint: {x: -0.225, y: 4.686}
   SortingOrder: 1
   BodyPartCategory: 1
   isFlippable: 1

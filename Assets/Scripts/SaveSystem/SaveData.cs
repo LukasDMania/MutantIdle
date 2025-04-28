@@ -21,4 +21,5 @@ public class SaveData
     public double PrestigeGainPercentage;
     public bool GenPP;
     public AudioVolumeSaveData AudioVolumeSaveData;
+    public float TotalTimePlayed;
 }
