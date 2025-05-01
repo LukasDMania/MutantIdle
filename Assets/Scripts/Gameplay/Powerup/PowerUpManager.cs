@@ -109,6 +109,7 @@ public class PowerUpManager : MonoBehaviour
         GameObject text = Instantiate(TextAfterPowerUpPrefab, position, Quaternion.identity);
         TextMeshPro textMesh = text.GetComponent<TextMeshPro>();
         textMesh.text = powerUp.TextToDisplayAfterActivation();
+        textMesh.sortingOrder = 1;
 
         textMesh.alpha = 0f;
 

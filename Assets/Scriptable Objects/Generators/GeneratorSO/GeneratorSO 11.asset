@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 338586bbdcc4873438bc3255b6afee62, type: 3}
   m_Name: GeneratorSO 11
   m_EditorClassIdentifier: 
-  BaseCost: 1095868211200
+  BaseCost: 2995868211200
   GrowthRate: 1.1
   BaseProduction: 1574640

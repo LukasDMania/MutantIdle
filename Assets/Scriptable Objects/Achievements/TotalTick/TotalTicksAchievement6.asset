@@ -34,5 +34,5 @@ MonoBehaviour:
   AchievementUnlocked: 0
   TotalTicks: {fileID: 11400000, guid: 798a3bd8238c1784d9be1283d1e17447, type: 2}
   TickInterval: {fileID: 11400000, guid: 19014aad2cd6e0b4dac2be84b98a69dc, type: 2}
-  IntervalBuffAmount: -0.1
+  IntervalBuffAmount: -0.15
   RequiredTicks: 35000

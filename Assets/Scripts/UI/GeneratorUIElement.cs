@@ -39,7 +39,7 @@ public class GeneratorUIElement : MonoBehaviour, IPrestigable
         _generatorLevel.text = $"{_linkedGenerator.GeneratorLevel}";
         _slider.value = _linkedGenerator.CalculatePercentageToNextMultiplier();
         _productionRate.text = $"{NumberFormatter.FormatNumber(_linkedGenerator.TotalProductionWithoutGlobal, NumberFormatterSO.FormatType.Suffix)}/t";
-        //_linkedGenerator.CalculateTotalProduction();
+        _linkedGenerator.CalculateTotalProduction();
         _generatorMultiplier.text = $"Multiplier: {NumberFormatter.FormatNumber(_linkedGenerator.TotalMultiplierWithoutGlobal, NumberFormatterSO.FormatType.Suffix)}x";
         _upgradeButtonText.text = $"{NumberFormatter.FormatNumber(_linkedGenerator.CurrentUpgradeCost, NumberFormatterSO.FormatType.Suffix)}";
     }
@@ -47,10 +47,29 @@ public class GeneratorUIElement : MonoBehaviour, IPrestigable
     private void OnUpgradeClicked()
     {
         AudioManager.Instance.AudioSystemSO.PlayUISound(SoundName.ButtonClick_1);
+
         if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
         {
             Debug.Log("Control key held down during upgrade.");
             _linkedGenerator.UpgradeGeneratorMax();
+            UpdateUI();
+            return;
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
+            Debug.Log("Shift key held down during upgrade.");
+            _linkedGenerator.UpgradeGeneratorAmount(10);
+            UpdateUI();
+            return;
+        }
+
+        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Space))
+        {
+            Debug.Log("Alt key held down during upgrade.");
+            _linkedGenerator.UpgradeGeneratorAmount(25);
+            UpdateUI();
+            return;
         }
 
         _linkedGenerator.UpgradeGenerator();

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: GeneratorSO 2
   m_EditorClassIdentifier: 
   BaseCost: 60
-  GrowthRate: 1.11
+  GrowthRate: 1.09
   BaseProduction: 6

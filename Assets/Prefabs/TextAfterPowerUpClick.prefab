@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9120362940300889550}
   - component: {fileID: 391008677721594207}
   - component: {fileID: 8467374012546871118}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TextAfterPowerUpClick
   m_TagString: Untagged
   m_Icon: {fileID: 0}

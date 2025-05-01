@@ -84,12 +84,12 @@ public class Generator : MonoBehaviour, ITickable, IPrestigable
         // Handle visuals
         if (GeneratorLevel == 1)
         {
-            Debug.Log("Adding initial Body Part");
+            //Debug.Log("Adding initial Body Part");
             CharacterVisualManager.AddBodyPart(this, BodyPartDataSO);
         }
         else
         {
-            Debug.Log($"Updating Body Part sprite for level {GeneratorLevel}");
+            //Debug.Log($"Updating Body Part sprite for level {GeneratorLevel}");
             CharacterVisualManager.UpdateBodyPartSprite(this, BodyPartDataSO);
         }
 
@@ -122,6 +122,15 @@ public class Generator : MonoBehaviour, ITickable, IPrestigable
         while (CanUpgrade())
         {
             UpgradeGenerator();
+        }
+    }
+    public void UpgradeGeneratorAmount(int amount)
+    {
+        int counter = 0;
+        while (counter < amount && CanUpgrade())
+        {
+            UpgradeGenerator();
+            counter++;
         }
     }
 

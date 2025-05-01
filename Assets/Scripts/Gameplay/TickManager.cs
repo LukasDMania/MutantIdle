@@ -38,7 +38,7 @@ public class TickManager : Singleton<TickManager>
 
     private void PerformTick()
     {
-        Debug.Log("Tick Number: " + _totalTicks.Value);
+        //Debug.Log("Tick Number: " + _totalTicks.Value);
         OnGameTick?.Invoke();
     }
 

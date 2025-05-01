@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PauseMenuManager : Singleton<PauseMenuManager>
 {
     public GameObject PauseMenuContainer;
+    public GameObject Mask;
 
     [HideInInspector]
     public bool PauseMenuIsOpen;
@@ -21,6 +22,7 @@ public class PauseMenuManager : Singleton<PauseMenuManager>
     private void Start()
     {
         CloseSettingsUI();
+        Mask.SetActive(false);
     }
     public void OpenSettingsUI()
     {
@@ -29,11 +31,13 @@ public class PauseMenuManager : Singleton<PauseMenuManager>
         BGMV.value = BGMVolume.Value;
         PauseMenuContainer.SetActive(true);
         PauseMenuIsOpen = true;
+        Mask.SetActive(true);
     }
     public void CloseSettingsUI()
     {
         PauseMenuContainer.SetActive(false);
         PauseMenuIsOpen = false;
+        Mask.SetActive(false);
     }
     public void PlayButtonUISound() 
     {

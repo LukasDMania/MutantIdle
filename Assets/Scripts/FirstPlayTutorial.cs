@@ -62,6 +62,10 @@ public class FirstPlayTutorial : MonoBehaviour
         x.Add(new TutorialData(new Vector2(555, 445), "Here you mutate the experiment, body parts will generate DNA automatically", 2f));
         x.Add(new TutorialData(new Vector2(555, 445), "You can scroll down to see later body parts or click and drag with the mouse", 0f));
         x.Add(new TutorialData(new Vector2(555, 445), "CTRL + Click will upgrade the maximum times you can afford", 0f));
+        x.Add(new TutorialData(new Vector2(555, 445), "SHIFT + Click will upgrade 10 times or as many under 10 you can afford", 0f));
+        x.Add(new TutorialData(new Vector2(555, 445), "SPACE + Click will upgrade 25 times or as many under 10 you can afford", 0f));
+        x.Add(new TutorialData(new Vector2(555, 445), "You can quick upgrade by pressing 1234567890F1F2F3F4F5 for generators 1-15 respectively", 0f));
+        x.Add(new TutorialData(new Vector2(555, 445), "You can combine these hotkeys with CTRL, SHIFT and SPACE", 0f));
         x.Add(new TutorialData(new Vector2(555, 445), "Click anywhere along the side of the panel to close or open it again", 0f));
         x.Add(new TutorialData(new Vector2(-435, 435), "This top label displays your DNA. This is needed to buy and upgrade body parts", 2f));
         x.Add(new TutorialData(new Vector2(-435, 330), "This is the total amount of DNA you're generating per tick", 1f));
